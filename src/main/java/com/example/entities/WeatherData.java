@@ -15,7 +15,7 @@ public class WeatherData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private float temp, humidity, windVelocity, preasure;
+    private float temp, humidity, windVelocity, pressure;
     private int rainfall, cloudBase, cloudCoverage;
     private String cloudType, windDirection;
 
@@ -28,11 +28,11 @@ public class WeatherData {
     public WeatherData() {
     }
 
-    public WeatherData(float temp, float humidity, float windVelocity, float preasure, int rainfall, int cloudBase, int cloudCoverage, String cloudType, String windDirection, Date dataDate, Time dataTime, Station station) {
+    public WeatherData(float temp, float humidity, float windVelocity, float pressure, int rainfall, int cloudBase, int cloudCoverage, String cloudType, String windDirection, Date dataDate, Time dataTime, Station station) {
         this.temp = temp;
         this.humidity = humidity;
         this.windVelocity = windVelocity;
-        this.preasure = preasure;
+        this.pressure = pressure;
         this.rainfall = rainfall;
         this.cloudBase = cloudBase;
         this.cloudCoverage = cloudCoverage;
@@ -75,12 +75,12 @@ public class WeatherData {
         this.windVelocity = windVelocity;
     }
 
-    public float getPreasure() {
-        return preasure;
+    public float getPressure() {
+        return pressure;
     }
 
-    public void setPreasure(float preasure) {
-        this.preasure = preasure;
+    public void setPressure(float pressure) {
+        this.pressure = pressure;
     }
 
     public int getRainfall() {
@@ -158,7 +158,7 @@ public class WeatherData {
         if (Float.compare(that.getTemp(), getTemp()) != 0) return false;
         if (Float.compare(that.getHumidity(), getHumidity()) != 0) return false;
         if (Float.compare(that.getWindVelocity(), getWindVelocity()) != 0) return false;
-        if (Float.compare(that.getPreasure(), getPreasure()) != 0) return false;
+        if (Float.compare(that.getPressure(), getPressure()) != 0) return false;
         if (getRainfall() != that.getRainfall()) return false;
         if (getCloudBase() != that.getCloudBase()) return false;
         if (getCloudCoverage() != that.getCloudCoverage()) return false;
@@ -179,7 +179,7 @@ public class WeatherData {
         result = 31 * result + (getTemp() != +0.0f ? Float.floatToIntBits(getTemp()) : 0);
         result = 31 * result + (getHumidity() != +0.0f ? Float.floatToIntBits(getHumidity()) : 0);
         result = 31 * result + (getWindVelocity() != +0.0f ? Float.floatToIntBits(getWindVelocity()) : 0);
-        result = 31 * result + (getPreasure() != +0.0f ? Float.floatToIntBits(getPreasure()) : 0);
+        result = 31 * result + (getPressure() != +0.0f ? Float.floatToIntBits(getPressure()) : 0);
         result = 31 * result + getRainfall();
         result = 31 * result + getCloudBase();
         result = 31 * result + getCloudCoverage();
