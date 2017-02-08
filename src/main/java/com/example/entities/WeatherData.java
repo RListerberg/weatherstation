@@ -1,6 +1,8 @@
 package com.example.entities;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
 
 /**
  * Created by juan on 2017-02-08.
@@ -17,13 +19,16 @@ public class WeatherData {
     private int rainfall, cloudBase, cloudCoverage;
     private String cloudType, windDirection;
 
+    private Date dataDate;
+    private Time dataTime;
+
     @ManyToOne
     private Station station;
 
     public WeatherData() {
     }
 
-    public WeatherData(float temp, float humidity, float windVelocity, float preasure, int rainfall, int cloudBase, int cloudCoverage, String cloudType, String windDirection, Station station) {
+    public WeatherData(float temp, float humidity, float windVelocity, float preasure, int rainfall, int cloudBase, int cloudCoverage, String cloudType, String windDirection, Date dataDate, Time dataTime, Station station) {
         this.temp = temp;
         this.humidity = humidity;
         this.windVelocity = windVelocity;
@@ -33,6 +38,8 @@ public class WeatherData {
         this.cloudCoverage = cloudCoverage;
         this.cloudType = cloudType;
         this.windDirection = windDirection;
+        this.dataDate = dataDate;
+        this.dataTime = dataTime;
         this.station = station;
     }
 
@@ -124,6 +131,22 @@ public class WeatherData {
         this.station = station;
     }
 
+    public Date getDataDate() {
+        return dataDate;
+    }
+
+    public void setDataDate(Date dataDate) {
+        this.dataDate = dataDate;
+    }
+
+    public Time getDataTime() {
+        return dataTime;
+    }
+
+    public void setDataTime(Time dataTime) {
+        this.dataTime = dataTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -143,6 +166,10 @@ public class WeatherData {
             return false;
         if (getWindDirection() != null ? !getWindDirection().equals(that.getWindDirection()) : that.getWindDirection() != null)
             return false;
+        if (getDataDate() != null ? !getDataDate().equals(that.getDataDate()) : that.getDataDate() != null)
+            return false;
+        if (getDataTime() != null ? !getDataTime().equals(that.getDataTime()) : that.getDataTime() != null)
+            return false;
         return getStation() != null ? getStation().equals(that.getStation()) : that.getStation() == null;
     }
 
@@ -158,6 +185,8 @@ public class WeatherData {
         result = 31 * result + getCloudCoverage();
         result = 31 * result + (getCloudType() != null ? getCloudType().hashCode() : 0);
         result = 31 * result + (getWindDirection() != null ? getWindDirection().hashCode() : 0);
+        result = 31 * result + (getDataDate() != null ? getDataDate().hashCode() : 0);
+        result = 31 * result + (getDataTime() != null ? getDataTime().hashCode() : 0);
         result = 31 * result + (getStation() != null ? getStation().hashCode() : 0);
         return result;
     }
