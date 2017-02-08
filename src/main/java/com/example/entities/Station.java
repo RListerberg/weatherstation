@@ -1,0 +1,109 @@
+package com.example.entities;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by juan on 2017-02-08.
+ */
+@Entity
+public class Station {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @OneToMany
+    private List<WeatherData> stationWeatherData = new ArrayList<>();
+
+    private String password;
+    private float lng, lat;
+    private boolean admin = false;
+
+    public Station() {
+    }
+
+    public Station(List<WeatherData> stationWeatherData, String password, float lng, float lat, boolean admin) {
+        this.stationWeatherData = stationWeatherData;
+        this.password = password;
+        this.lng = lng;
+        this.lat = lat;
+        this.admin = admin;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<WeatherData> getStationWeatherData() {
+        return stationWeatherData;
+    }
+
+    public void setStationWeatherData(List<WeatherData> stationWeatherData) {
+        this.stationWeatherData = stationWeatherData;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public float getLng() {
+        return lng;
+    }
+
+    public void setLng(float lng) {
+        this.lng = lng;
+    }
+
+    public float getLat() {
+        return lat;
+    }
+
+    public void setLat(float lat) {
+        this.lat = lat;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Station)) return false;
+
+        Station station = (Station) o;
+
+        if (getId() != station.getId()) return false;
+        if (Float.compare(station.getLng(), getLng()) != 0) return false;
+        if (Float.compare(station.getLat(), getLat()) != 0) return false;
+        if (isAdmin() != station.isAdmin()) return false;
+        if (getStationWeatherData() != null ? !getStationWeatherData().equals(station.getStationWeatherData()) : station.getStationWeatherData() != null)
+            return false;
+        return getPassword() != null ? getPassword().equals(station.getPassword()) : station.getPassword() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getStationWeatherData() != null ? getStationWeatherData().hashCode() : 0);
+        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
+        result = 31 * result + (getLng() != +0.0f ? Float.floatToIntBits(getLng()) : 0);
+        result = 31 * result + (getLat() != +0.0f ? Float.floatToIntBits(getLat()) : 0);
+        result = 31 * result + (isAdmin() ? 1 : 0);
+        return result;
+    }
+}
