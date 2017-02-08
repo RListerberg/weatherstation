@@ -14,9 +14,6 @@ public class Station {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @OneToMany
-    private List<WeatherData> stationWeatherData = new ArrayList<>();
-
     private String password;
     private float lng, lat;
     private boolean admin = false;
@@ -24,8 +21,7 @@ public class Station {
     public Station() {
     }
 
-    public Station(List<WeatherData> stationWeatherData, String password, float lng, float lat, boolean admin) {
-        this.stationWeatherData = stationWeatherData;
+    public Station(String password, float lng, float lat, boolean admin) {
         this.password = password;
         this.lng = lng;
         this.lat = lat;
@@ -40,13 +36,6 @@ public class Station {
         this.id = id;
     }
 
-    public List<WeatherData> getStationWeatherData() {
-        return stationWeatherData;
-    }
-
-    public void setStationWeatherData(List<WeatherData> stationWeatherData) {
-        this.stationWeatherData = stationWeatherData;
-    }
 
     public String getPassword() {
         return password;
@@ -91,15 +80,12 @@ public class Station {
         if (Float.compare(station.getLng(), getLng()) != 0) return false;
         if (Float.compare(station.getLat(), getLat()) != 0) return false;
         if (isAdmin() != station.isAdmin()) return false;
-        if (getStationWeatherData() != null ? !getStationWeatherData().equals(station.getStationWeatherData()) : station.getStationWeatherData() != null)
-            return false;
         return getPassword() != null ? getPassword().equals(station.getPassword()) : station.getPassword() == null;
     }
 
     @Override
     public int hashCode() {
         int result = getId();
-        result = 31 * result + (getStationWeatherData() != null ? getStationWeatherData().hashCode() : 0);
         result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
         result = 31 * result + (getLng() != +0.0f ? Float.floatToIntBits(getLng()) : 0);
         result = 31 * result + (getLat() != +0.0f ? Float.floatToIntBits(getLat()) : 0);

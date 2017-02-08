@@ -1,0 +1,32 @@
+[
+  {
+    "lng": 11,
+    "lat": 22,
+    "admin": false,
+    "password": "hej"
+  },
+  {
+    "lng": 12,
+    "lat": 22,
+    "admin": false,
+    "password": "hej"
+  },
+  {
+    "lng": 11,
+    "lat": 23,
+    "admin": false,
+    "password": "hej"
+  },
+  {
+    "lng": 12,
+    "lat": 23,
+    "admin": false,
+    "password": "hej"
+  },
+  {
+    "lng": 11,
+    "lat": 24,
+    "admin": false,
+    "password": "hej"
+  }
+]

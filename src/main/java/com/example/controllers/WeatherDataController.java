@@ -11,6 +11,7 @@ import java.util.List;
  * <h1>Created by Mattias on 2017-02-08.</h1>
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:63343")
 @RequestMapping("/weatherdata")
 public class WeatherDataController {
 
