@@ -4,6 +4,7 @@ import com.example.entities.Station;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,16 +20,13 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @RunWith(SpringRunner.class)
-public class StationTest {
+public class StationRESTTest {
 
     private static String url;
     private Station station;
 
     @Autowired
     private TestRestTemplate restTemplate;
-
-    // @Rule
-    // public final ExpectedException exception = ExpectedException.none();
 
     @BeforeClass
     public static void setup() {

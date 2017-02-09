@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.RestTest.StationRESTTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -11,6 +12,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
+        StationRESTTest.class,
         WeatherDataTest.class,
         StationTest.class
 })
