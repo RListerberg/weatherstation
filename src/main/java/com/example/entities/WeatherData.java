@@ -3,6 +3,8 @@ package com.example.entities;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by juan on 2017-02-08.
@@ -24,6 +26,9 @@ public class WeatherData {
 
     @ManyToOne
     private Station station;
+
+    @Transient
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public WeatherData() {
     }
@@ -135,8 +140,13 @@ public class WeatherData {
         return dataDate;
     }
 
-    public void setDataDate(Date dataDate) {
-        this.dataDate = dataDate;
+    public void setDataDate(String dateString) {
+        try {
+            this.dataDate = new Date(sdf.parse(dateString).getTime()) ;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public Time getDataTime() {
