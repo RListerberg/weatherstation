@@ -5,6 +5,7 @@ import com.example.repositories.StationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 /**
@@ -29,8 +30,12 @@ public class StationController {
     }
 
     @PostMapping
-    public Station createStation(@RequestBody Station station) {
-        return stationRepository.save(station);
+    public Station createStation(@RequestBody Station station) throws ConstraintViolationException {
+        try {
+            return stationRepository.save(station);
+        } catch(ConstraintViolationException e) {
+            return null;
+        }
     }
 
     @PutMapping

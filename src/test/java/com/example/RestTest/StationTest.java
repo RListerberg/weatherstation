@@ -2,14 +2,12 @@ package com.example.RestTest;
 
 import com.example.entities.Station;
 import org.junit.*;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
@@ -28,6 +26,9 @@ public class StationTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    // @Rule
+    // public final ExpectedException exception = ExpectedException.none();
+
     @BeforeClass
     public static void setup() {
         url = "http://localhost:8080/station";
@@ -43,6 +44,7 @@ public class StationTest {
     public void cleanUpDb() {
         restTemplate.delete(url + "/" + station.getId());
     }
+
 
     @Test
     public void testToGetAllStations() {
@@ -80,7 +82,7 @@ public class StationTest {
     @Test
     public void testToPostANewStation() {
         // Post a new Station
-        Station station = new Station("password", 11.1f, 12.2f, false);
+        station = new Station("password", 11.1f, 12.2f, false);
         Station returnedStation = restTemplate.postForObject(url, station, Station.class);
 
         assertTrue("Failed to post new Station", returnedStation.getId() > 0);
@@ -88,28 +90,24 @@ public class StationTest {
 
     @Test
     public void testToPostAnEmptyStation() {
-        // Expect an exception when posting an entity with null fields
-        final ExpectedException exception = ExpectedException.none();
+        // Assert that the returned object is null when posting a Station with null fields
         Station station = new Station();
-
-        exception.expect(ConstraintViolationException.class);
-        restTemplate.postForObject(url, station, Station.class);
+        assertThat(restTemplate.postForObject(url, station, Station.class)).isNull();
     }
 
     @Test
     public void testToDeleteAStation() {
-        // Post a Station
-        Station station = new Station("password", 12.21f, 12.21f, false);
-        Station returnedStation = restTemplate.postForObject(url, station, Station.class);
+        // Post a new Station
+        Station newStation = new Station("password", 1f, 2f, false);
+        int id = restTemplate.postForObject(url, newStation, Station.class).getId();
 
         // Get the number of stations in db
         int numberOfStations = restTemplate.getForObject(url, List.class).size();
 
         // Delete the station
-        restTemplate.delete(url + "/" + returnedStation.getId());
+        restTemplate.delete(url + "/" + id);
 
-        // Assert that the number of stations in db on less than before
+        // Assert that the number of stations in db is one less than before
         assertThat(restTemplate.getForObject(url, List.class).size()).isEqualTo(numberOfStations - 1);
-
     }
 }
