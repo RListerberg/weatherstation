@@ -103,7 +103,6 @@ public class Station {
     public String toString() {
         return "Station{" +
                 "id=" + id +
-                ", stationWeatherData=" + stationWeatherData +
                 ", password='" + password + '\'' +
                 ", lng=" + lng +
                 ", lat=" + lat +

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
  * <h1>Created by Mattias on 2017-02-08.</h1>
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 public class StationTest {
 
     private static String url;
@@ -82,17 +83,18 @@ public class StationTest {
     @Test
     public void testToPostANewStation() {
         // Post a new Station
-        station = new Station("password", 11.1f, 12.2f, false);
-        Station returnedStation = restTemplate.postForObject(url, station, Station.class);
+        Station newStation = new Station("password", 11.1f, 12.2f, false);
+        Station returnedStation = restTemplate.postForObject(url, newStation, Station.class);
 
         assertTrue("Failed to post new Station", returnedStation.getId() > 0);
+        restTemplate.delete(url+"/"+returnedStation.getId());
     }
 
     @Test
     public void testToPostAnEmptyStation() {
         // Assert that the returned object is null when posting a Station with null fields
-        Station station = new Station();
-        assertThat(restTemplate.postForObject(url, station, Station.class)).isNull();
+        Station newStation = new Station();
+        assertThat(restTemplate.postForObject(url, newStation, Station.class)).isNull();
     }
 
     @Test
