@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalTime;
-import java.util.Calendar;
 
 import javax.transaction.Transactional;
 
@@ -35,10 +32,10 @@ public class WeatherDataTest {
 	@Autowired
 	private WeatherDataRepository repo;
 	private WeatherData weatherData;
-
+	private Station station;
 
 	public Station testStationEntity() {
-		Station station = new Station();
+		station = new Station();
 		station.setPassword("weather");
 		station.setAdmin(true);
 		station.setLat(50.73f);
@@ -46,25 +43,24 @@ public class WeatherDataTest {
 		return station;
 	}
 
+
+
 	@Before
 	public void fillWeatherData() {
 		weatherData = new WeatherData();
-		Date date = new Date(Calendar.getInstance().getTime().getTime());
-
 
 		weatherData.setId(0);
 		weatherData.setCloudBase(40);
 		weatherData.setCloudCoverage(3);
 		weatherData.setCloudType("Nebulosus");
-		weatherData.setDataDate(date);
-		weatherData.setDataTime(Time.valueOf(LocalTime.MAX));
+		weatherData.setDataDate("2017-02-04");
+		weatherData.setDataTime(new Time(120023));
 		weatherData.setPressure(876);
 		weatherData.setRainfall(5);
 		weatherData.setStation(testStationEntity());
 		weatherData.setTemp(32.4f);
 		weatherData.setWindDirection("North");
 		weatherData.setWindVelocity(26.3f);
-
 
 	}
 
@@ -86,29 +82,18 @@ public class WeatherDataTest {
 	public void weatherDataUpdate() {
 		repo.save(weatherData);
 
-		weatherData.getCloudBase();
-		weatherData.getCloudCoverage();
-		weatherData.getCloudType();
-		weatherData.getDataDate();
-		weatherData.getDataTime();
-		weatherData.getPressure();
-		weatherData.getRainfall();
-		weatherData.getStation();
-		weatherData.getTemp();
-		weatherData.getWindDirection();
-		weatherData.getWindVelocity();
-
 		assertEquals(weatherData.getCloudBase(), 40);
 		assertEquals(weatherData.getCloudCoverage(), 3);
 		assertEquals(weatherData.getCloudType(), "Nebulosus");
-		System.out.println("WeatherData date: " + weatherData.getDataDate());
-		System.out.println("WeatherData Time: " + weatherData.getDataTime());
-				assertEquals(weatherData.getDataDate().toString(), new Date(Calendar.getInstance().getTime().getTime()).toString());
-				assertEquals(weatherData.getDataTime(), LocalTime.MAX);
+		assertEquals(weatherData.getDataDate().toString(), "2017-02-04");
+		assertEquals(weatherData.getDataTime(), new Time(120023));
 		assertEquals(weatherData.getWindDirection(), "North");
-
+		assertEquals(weatherData.getPressure(), 876, 0.1f);
+		assertEquals(weatherData.getRainfall(), 5);
+		assertEquals(weatherData.getTemp(), 32.4, 0.1f);
+		assertEquals(weatherData.getWindVelocity(), 26.3, 0.1f);
+		assertEquals(weatherData.getStation(), station);
 
 	}
-
 
 }
