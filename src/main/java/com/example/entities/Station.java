@@ -106,4 +106,16 @@ public class Station {
         result = 31 * result + (isAdmin() ? 1 : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Station{" +
+                "id=" + id +
+                ", stationWeatherData=" + stationWeatherData +
+                ", password='" + password + '\'' +
+                ", lng=" + lng +
+                ", lat=" + lat +
+                ", admin=" + admin +
+                '}';
+    }
 }
