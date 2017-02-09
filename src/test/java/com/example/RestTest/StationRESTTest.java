@@ -18,7 +18,7 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @RunWith(SpringJUnit4ClassRunner.class)
-public class StationTest {
+public class StationRESTTest {
 
     private static String url;
     private Station station;

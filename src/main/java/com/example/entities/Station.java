@@ -23,6 +23,8 @@ public class Station {
     private float lat;
     @NotNull
     private boolean admin = false;
+    @NotNull
+    private boolean enabled = true;
 
     public Station() {
     }
@@ -32,6 +34,14 @@ public class Station {
         this.lng = lng;
         this.lat = lat;
         this.admin = admin;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public int getId() {
@@ -103,7 +113,6 @@ public class Station {
     public String toString() {
         return "Station{" +
                 "id=" + id +
-                ", stationWeatherData=" + stationWeatherData +
                 ", password='" + password + '\'' +
                 ", lng=" + lng +
                 ", lat=" + lat +

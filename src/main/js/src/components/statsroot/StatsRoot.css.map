@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA;;gFAEgF;AAMhF;;gFAEgF;AAKhF;;gFAEgF;ACfhF,WAAY;EACV,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,MAAM;EACvB,gBAAgB,EDHW,KAAK",
+"mappings": "AAAA;;gFAEgF;AAMhF;;gFAEgF;AAMhF;;gFAEgF;AChBhF,WAAY;EACV,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,MAAM;EACvB,gBAAgB,EDHW,KAAK",
 "sources": ["../../variables.scss","StatsRoot.scss"],
 "names": [],
 "file": "StatsRoot.css"
