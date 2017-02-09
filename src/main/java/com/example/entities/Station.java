@@ -99,15 +99,4 @@ public class Station {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Station{" +
-                "id=" + id +
-                ", stationWeatherData=" + stationWeatherData +
-                ", password='" + password + '\'' +
-                ", lng=" + lng +
-                ", lat=" + lat +
-                ", admin=" + admin +
-                '}';
-    }
 }
