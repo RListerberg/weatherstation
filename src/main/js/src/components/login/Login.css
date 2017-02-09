@@ -1,3 +1,15 @@
-
+#login-root {
+  width: 100vw;
+  height: 100vh;
+  background-color: steelblue; }
+  #login-root #login-form {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    z-index: 15;
+    margin: -100px 0 0 -150px;
+    background: lightgrey; }
 
 /*# sourceMappingURL=Login.css.map */
