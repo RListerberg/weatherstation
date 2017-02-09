@@ -1,6 +1,7 @@
 package com.example.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.sql.Time;
 import java.text.ParseException;
@@ -17,11 +18,27 @@ public class WeatherData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private float temp, humidity, windVelocity, pressure;
-    private int rainfall, cloudBase, cloudCoverage;
-    private String cloudType, windDirection;
-
+    @NotNull
+    private float temp;
+    @NotNull
+    private float humidity;
+    @NotNull
+    private float windVelocity;
+    @NotNull
+    private float pressure;
+    @NotNull
+    private int rainfall;
+    @NotNull
+    private int cloudBase;
+    @NotNull
+    private int cloudCoverage;
+    @NotNull
+    private String cloudType;
+    @NotNull
+    private String windDirection;
+    @NotNull
     private Date dataDate;
+    @NotNull
     private Time dataTime;
 
     @ManyToOne
