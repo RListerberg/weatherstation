@@ -2,28 +2,24 @@ package com.example;
 
 import com.example.entities.Station;
 import com.example.entities.WeatherData;
-import com.example.repositories.StationRepository;
 import com.example.repositories.WeatherDataRepository;
-
-import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
-
 
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.Calendar;
 
 import javax.transaction.Transactional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 /**
@@ -34,15 +30,14 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class WeatherDataTest{
+public class WeatherDataTest {
 
 	@Autowired
 	private WeatherDataRepository repo;
 	private WeatherData weatherData;
 
 
-
-	public Station testStationEntity(){
+	public Station testStationEntity() {
 		Station station = new Station();
 		station.setPassword("weather");
 		station.setAdmin(true);
@@ -52,15 +47,16 @@ public class WeatherDataTest{
 	}
 
 	@Before
-	public void fillWeatherData(){
+	public void fillWeatherData() {
 		weatherData = new WeatherData();
+		Date date = new Date(Calendar.getInstance().getTime().getTime());
 
 
 		weatherData.setId(0);
 		weatherData.setCloudBase(40);
 		weatherData.setCloudCoverage(3);
 		weatherData.setCloudType("Nebulosus");
-		weatherData.setDataDate(new Date(2017, 04, 02));
+		weatherData.setDataDate(date);
 		weatherData.setDataTime(Time.valueOf(LocalTime.MAX));
 		weatherData.setPressure(876);
 		weatherData.setRainfall(5);
@@ -74,15 +70,44 @@ public class WeatherDataTest{
 
 
 	@Test
-	public void getWindDirection(){
+	public void getWindDirection() {
 		repo.save(weatherData);
-		assertTrue("wind direction doesn't match", weatherData.getWindDirection().equals("North"));
+		assertTrue("Wind direction doesn't match", weatherData.getWindDirection().equals("North"));
 	}
 
 	@Test
-	public void checkAdminStatus(){
+	public void checkAdminStatus() {
 		repo.save(weatherData);
 		assertTrue("This is a superAdmin", weatherData.getStation().isAdmin());
+	}
+
+
+	@Test
+	public void weatherDataUpdate() {
+		repo.save(weatherData);
+
+		weatherData.getCloudBase();
+		weatherData.getCloudCoverage();
+		weatherData.getCloudType();
+		weatherData.getDataDate();
+		weatherData.getDataTime();
+		weatherData.getPressure();
+		weatherData.getRainfall();
+		weatherData.getStation();
+		weatherData.getTemp();
+		weatherData.getWindDirection();
+		weatherData.getWindVelocity();
+
+		assertEquals(weatherData.getCloudBase(), 40);
+		assertEquals(weatherData.getCloudCoverage(), 3);
+		assertEquals(weatherData.getCloudType(), "Nebulosus");
+		System.out.println("WeatherData date: " + weatherData.getDataDate());
+		System.out.println("WeatherData Time: " + weatherData.getDataTime());
+				assertEquals(weatherData.getDataDate().toString(), new Date(Calendar.getInstance().getTime().getTime()).toString());
+				assertEquals(weatherData.getDataTime(), LocalTime.MAX);
+		assertEquals(weatherData.getWindDirection(), "North");
+
+
 	}
 
 
