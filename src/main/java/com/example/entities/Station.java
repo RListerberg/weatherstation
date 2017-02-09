@@ -1,6 +1,7 @@
 package com.example.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +15,13 @@ public class Station {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotNull
     private String password;
-    private float lng, lat;
+    @NotNull
+    private float lng;
+    @NotNull
+    private float lat;
+    @NotNull
     private boolean admin = false;
 
     public Station() {

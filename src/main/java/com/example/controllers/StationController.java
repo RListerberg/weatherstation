@@ -11,7 +11,7 @@ import java.util.List;
  * <h1>Created by Mattias on 2017-02-08.</h1>
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:63343")
+@CrossOrigin(origins = "http://localhost:63342")
 @RequestMapping("/station")
 public class StationController {
 
@@ -42,4 +42,5 @@ public class StationController {
     public void deleteStation(@PathVariable int id) {
         stationRepository.delete(id);
     }
+
 }
