@@ -1,0 +1,19 @@
+#menu-root {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: black;
+  height: 3em; }
+  #menu-root p {
+    color: white;
+    margin: auto;
+    cursor: pointer; }
+  #menu-root #left-side {
+    display: flex;
+    justify-content: space-between;
+    width: 10em; }
+  #menu-root #right-side {
+    display: flex;
+    margin-right: .5em; }
+
+/*# sourceMappingURL=MenuBar.css.map */

@@ -1,0 +1,25 @@
+#menu-root {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: black;
+  height: 3em;
+
+  p {
+    color: white;
+    margin: auto;
+    cursor: pointer;
+  }
+
+  #left-side {
+    display: flex;
+    justify-content: space-between;
+    width: 10em;
+  }
+
+  #right-side {
+    display: flex;
+    margin-right: .5em;
+
+  }
+}

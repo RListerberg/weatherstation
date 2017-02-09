@@ -13,7 +13,7 @@ public class DemoController {
 
     @RequestMapping(value="/echo")
     public String echo(@RequestParam(value="request", defaultValue="Hello World" ) String request){
-        return request;
+        return "Server: " + request;
     }
 
 }

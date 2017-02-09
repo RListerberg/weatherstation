@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
-import logo from './giphy.gif';
+import logo from './img/giphy.gif';
 import './App.scss';
 
 class App extends Component {
+
     handleChange = (event) => {
         this.setState( {request: event.target.value} )
     };
+
     handleSubmit = (event) => {
         event.preventDefault();
         var request = this.state.request.trim();
         if (!request) {
             return;
         }
+
         fetch(`/echo?request=${request}`)
             .then(response => {
                 return response.text();
@@ -21,6 +24,7 @@ class App extends Component {
                 alert(body);
             });
     };
+
     render = () => {
         return (
             <div className="App">

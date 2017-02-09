@@ -1,6 +1,9 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
 node_modules
+src/main/resources/static
+*.css
+*.css.map
 
 ### STS ###
 .apt_generated
@@ -15,6 +18,8 @@ node_modules
 *.iws
 *.iml
 *.ipr
+
+
 
 ### NetBeans ###
 nbproject/private/
