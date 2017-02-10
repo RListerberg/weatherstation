@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * <h1>Created by Mattias on 2017-02-09.</h1>
@@ -29,10 +30,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             .antMatchers("/", "/static/*").permitAll()
             .antMatchers(HttpMethod.POST, "/login").permitAll()
-            .antMatchers("/private").authenticated()
+            .antMatchers("/private/*").authenticated()
             .and()
             .formLogin()
             .loginPage("/login.html")
+            .and()
+            .logout()
             .and()
             .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
             .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
