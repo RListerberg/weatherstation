@@ -26,8 +26,6 @@ public class StationRESTTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    // @Rule
-    // public final ExpectedException exception = ExpectedException.none();
 
     @BeforeClass
     public static void setup() {

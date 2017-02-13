@@ -5,6 +5,8 @@ src/main/resources/static
 *.css
 *.css.map
 
+SecurityTest/SecurityTest.java
+
 ### STS ###
 .apt_generated
 .classpath

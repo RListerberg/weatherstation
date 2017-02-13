@@ -2,19 +2,15 @@ package com.example.controllers;
 
 import com.example.entities.Station;
 import com.example.repositories.StationRepository;
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
 
 /**
  * <h1>Created by Mattias on 2017-02-09.</h1>
