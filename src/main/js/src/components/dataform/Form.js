@@ -26,6 +26,7 @@ export default class Form extends Component {
     render() {
         return (
             <div id="form-root">
+                <p>test</p>
 
                 <h2>Form for data</h2>
 

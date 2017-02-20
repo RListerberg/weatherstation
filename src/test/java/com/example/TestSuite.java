@@ -14,6 +14,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         StationRESTTest.class,
         WeatherDataTest.class,
+        WeatherDataTest.class,
         StationTest.class
 })
 public class TestSuite {
