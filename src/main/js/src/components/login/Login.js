@@ -7,13 +7,13 @@ export default class Login extends Component {
     constructor(props){
         super(props);
         this.state = ({
-            username: "",
+            id: "",
             password: ""
         })
     }
 
-    handleUsername = (event) => {
-        this.setState({username: event.target.value})
+    handleId = (event) => {
+        this.setState({id: event.target.value})
     };
 
     handlePassword = (event) => {
@@ -23,12 +23,16 @@ export default class Login extends Component {
 
     handleLogin(){
 
-
-        serverCommunications.doLogin(this.state.username, this.state.password).then((response)=> {
+        serverCommunications.doLogin(this.state.id, this.state.password).then((response)=> {
             console.log(response);
+            this.setState({token:response.text});
+            serverCommunications.getOneStation(this.state.id, this.state.token);
+
+
+        }, (error) => {
+            console.log(error);
         });
-        // alert('Username: ' + this.state.username);
-        // alert('Password: ' + this.state.password);
+
     };
 
 
@@ -39,12 +43,11 @@ export default class Login extends Component {
                 <div id="login-form">
 
                         <label><b>StationsId</b></label>
-                        <input type="text" placeholder="stationsId" name="username" value={this.state.username} onChange={this.handleUsername} />
+                        <input type="text" placeholder="stationsId" name="username" value={this.state.id} onChange={this.handleId} />
                         <label><b>Password</b></label>
                         <input type="text" placeholder="password" name="password" value={this.state.password} onChange={this.handlePassword} />
 
                     <div>
-                        <button type="button" className="cancelBut">Cancel</button>
                         <button type="button" className="LoginBut" onClick={this.handleLogin.bind(this)}>Login</button>
                     </div>
                 </div>

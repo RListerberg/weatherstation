@@ -2,10 +2,11 @@
  * Server communications class
  */
 import Request from "superagent";
+
 const serverUrl = "http://localhost:8080/";
 const loginURL = "login";
-const weatherDataURL = "weatherdata";
-const stationURL = "station";
+const weatherDataURL = "weatherdata/";
+const stationURL = "station/";
 
 
 class ServerCommunications {
@@ -25,7 +26,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -41,7 +42,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -55,7 +56,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -71,7 +72,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -87,7 +88,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -102,7 +103,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -118,21 +119,23 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
     }
 
-    getOneStation(id) {
+    getOneStation(id, token) {
         return new Promise((resolve, reject) => {
             Request
+
                 .get(serverUrl + stationURL + id)
+                .set("Authorization",token)
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -148,7 +151,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -164,7 +167,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -179,7 +182,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
