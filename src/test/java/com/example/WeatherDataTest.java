@@ -44,7 +44,6 @@ public class WeatherDataTest {
 	}
 
 
-
 	@Before
 	public void fillWeatherData() {
 		weatherData = new WeatherData();
