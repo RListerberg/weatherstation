@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './components/root/Root';
 import Login from './components/login/Login';
 import './index.css';
 
 ReactDOM.render(
   <Login />,
-  document.getElementById('root')
+  document.getElementById('login-root')
 );
