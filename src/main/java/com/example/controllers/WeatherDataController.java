@@ -1,6 +1,8 @@
 package com.example.controllers;
 
+import com.example.entities.Station;
 import com.example.entities.WeatherData;
+import com.example.repositories.StationRepository;
 import com.example.repositories.WeatherDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +13,14 @@ import java.util.List;
  * <h1>Created by Mattias on 2017-02-08.</h1>
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:63342")
+@CrossOrigin(origins = "*")
 @RequestMapping("/weatherdata")
 public class WeatherDataController {
 
     @Autowired
     private WeatherDataRepository weatherDataRepository;
+    @Autowired
+    private StationRepository stationRepository;
 
     @GetMapping
     public List<WeatherData> getAllWeatherData() {
@@ -41,5 +45,10 @@ public class WeatherDataController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteWeatherData(@PathVariable int id) {
         weatherDataRepository.delete(id);
+    }
+
+    @RequestMapping(value = "/station/{stationId}", method = RequestMethod.GET)
+    public List<WeatherData> getWeatherDataForStation(@PathVariable int stationId) {
+        return weatherDataRepository.findByStation(stationRepository.findOne(stationId));
     }
 }
