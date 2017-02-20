@@ -5,5 +5,5 @@ import './index.css';
 
 ReactDOM.render(
   <Login />,
-  document.getElementById('login-root')
+  document.getElementById('root')
 );

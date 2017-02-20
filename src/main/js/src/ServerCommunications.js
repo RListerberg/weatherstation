@@ -2,7 +2,10 @@
  * Server communications class
  */
 import Request from "superagent";
-
+const serverUrl = "http://localhost:8080/";
+const loginURL = "login";
+const weatherDataURL = "weatherdata";
+const stationURL = "station";
 
 
 class ServerCommunications {
