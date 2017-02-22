@@ -38,7 +38,7 @@ export default class Login extends Component {
                 serverCommunications.getOneStation(this.state.id).then((response)=>{
                     setLoggedIn(true);
                     setStationsID(response.body.id);
-                    this.props.changePage("weatherstation");
+                    this.props.changePage("weatherdata");
                 });
 
             }, (error) => {

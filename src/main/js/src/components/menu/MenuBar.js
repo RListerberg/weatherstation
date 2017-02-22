@@ -16,10 +16,7 @@ export default class MenuBar extends Component {
                : null}
 
                 <div id="right-side">
-                    {loggedIn ?
-                        <p>Station {stationsID}</p>
-                        : <p>Log in</p>
-                    }
+                    {loggedIn ? <p>Station {stationsID}</p> : <p onClick={() => this.props.changePage("login")}>Log in</p>}
                 </div>
             </div>
         )

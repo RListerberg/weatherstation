@@ -11,7 +11,7 @@ export default class Root extends Component {
     constructor(props){
         super(props);
         this.state = {
-            activePage: "stats"
+            activePage: ""
         };
     }
 
@@ -30,7 +30,7 @@ export default class Root extends Component {
                 activePage = <StatsRoot/>;
                 break;
             case "login":
-                activePage = <Login/>;
+                activePage = <Login changePage={this.changePage.bind(this)}/>;
                 break;
             default:
                 activePage = <StatsRoot/>;
@@ -41,9 +41,7 @@ export default class Root extends Component {
             <div id="root">
                 <MenuBar changePage={this.changePage.bind(this)}/>
 
-
-
-                {loggedIn ? activePage : <Login changePage={this.changePage.bind(this)}/> }
+                {activePage}
 
             </div>
         )
