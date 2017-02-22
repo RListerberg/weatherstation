@@ -8,3 +8,11 @@
   justify-content: center;
   background-color: $dark-green;
 }
+
+.nextlink {
+  text-decoration: underline;
+  color: steelblue;
+}
+.nextlink:hover {
+  cursor: pointer;
+}
