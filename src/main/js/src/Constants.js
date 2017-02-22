@@ -20,6 +20,7 @@ export const loginURL = "/login";
 
 export var loggedIn = false;
 export var jwtToken = "";
+export var stationsID = "";
 
 export function setToken(string) {
     jwtToken = string;
@@ -28,6 +29,12 @@ export function setToken(string) {
 export function setLoggedIn(logged) {
     loggedIn = logged;
 }
+
+export function setStationsID(id) {
+    stationsID = id;
+}
+
+
 /***********************************************************************************************************************
  * COMPONENT-DATA
  **********************************************************************************************************************/
