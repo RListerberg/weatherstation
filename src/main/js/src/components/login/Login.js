@@ -7,10 +7,9 @@ import {setStationsID} from '../../Constants';
 
 export default class Login extends Component {
 
-
-
     constructor(props){
         super(props);
+
         this.state = ({
             id: "",
             password: "",
@@ -34,13 +33,12 @@ export default class Login extends Component {
             this.setState({errorDiv: "errorDiv-active-1" , errorMessage : "Please fill out the fields"});
         }
         else{
-            serverCommunications.doLogin(this.state.id, this.state.password).then((response)=> {
-                console.log(response);
+            serverCommunications.doLogin(this.state.id, this.state.password).then((response) => {
                 setToken(response.text);
                 serverCommunications.getOneStation(this.state.id).then((response)=>{
-                    console.log("getStationNmb: " + response.body.id);
                     setLoggedIn(true);
                     setStationsID(response.body.id);
+                    this.props.changePage("weatherstation");
                 });
 
             }, (error) => {
@@ -50,8 +48,8 @@ export default class Login extends Component {
         }
     };
 
-
     render() {
+
         return (
             <div id="login-root">
                 <div id="backgroundCloud">
@@ -64,7 +62,7 @@ export default class Login extends Component {
                             <input type="text" placeholder="StationsID" id="stationIdInp" className={this.state.loginInputs} value={this.state.id} onChange={this.handleId} />
                             <input type="password" placeholder="Password" id="passwordInp" className={this.state.loginInputs} value={this.state.password} onChange={this.handlePassword} />
                         <div>
-                            <button type="button" id="loginBut" onClick={this.handleLogin.bind(this)}><span>Login</span></button>
+                            <button type="button" id="loginBut" onClick={() => this.handleLogin()}><span>Login</span></button>
                         </div>
                     </div>
                 </div>
