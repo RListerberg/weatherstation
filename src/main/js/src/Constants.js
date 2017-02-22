@@ -9,7 +9,8 @@ export const serverUrl = "http://localhost:8080";
 // Endpoints
 export const weatherDataURL = "/weatherdata/";
 export const stationURL = "/station/";
-export const statisticsURL = "/statistics/";
+export const statisticsAVGURL = "/statistics/avg/";
+export const statisticsURL = "/statistics";
 export const loginURL = "/login/";
 
 
