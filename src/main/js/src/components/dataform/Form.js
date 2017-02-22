@@ -1,44 +1,12 @@
 import React, { Component } from 'react';
-import Datainput from '../datainput/Datainput';
 import moment from 'moment';
+import Datainput from '../datainput/Datainput';
+import { windValues, cloudValues, cloudCoverageValues } from '../../Constants';
+import { serverCommunications } from '../../ServerCommunications';
 import './Form.css';
 
 const date = new Date();
-const windValues = [
-    {id: 1, value: "North", text: "North"},
-    {id: 2, value: "East", text: "East"},
-    {id: 3, value: "South", text: "South"},
-    {id: 4, value: "West", text: "West"},
-    {id: 5, value: "Northeast", text: "Northeast"},
-    {id: 6, value: "Northwest", text: "Northwest"},
-    {id: 7, value: "Southeast", text: "Southeast"},
-    {id: 8, value: "Southwest", text: "Southwest"},
-];
-const cloudValues = [
-    {id: 1, value: "Fibratus", text: "Fibratus"},
-    {id: 2, value: "Capillatus", text: "Capillatus"},
-    {id: 3, value: "Castellanus", text: "Castellanus"},
-    {id: 4, value: "Lenticularis", text: "Lenticularis"},
-    {id: 5, value: "Mediocris", text: "Mediocris"},
-    {id: 6, value: "Spissatus", text: "Spissatus"},
-    {id: 7, value: "Calvus", text: "Calvus"},
-    {id: 8, value: "Nebulosus", text: "Nebulosus"},
-    {id: 9, value: "Uncinus", text: "Uncinus"},
-    {id:10, value: "Humilis", text: "Humilis"},
-    {id:11, value: "Stratiformis", text: "Stratiformis"},
-    {id:12, value: "Fractus", text: "Fractus"},
-    {id:13, value: "Floccus", text: "Floccus"}
-];
-const cloudCoverageValues = [
-    {id: 1, value: 1, text: "1/8"},
-    {id: 2, value: 2, text: "2/8"},
-    {id: 3, value: 3, text: "3/8"},
-    {id: 4, value: 4, text: "4/8"},
-    {id: 5, value: 5, text: "5/8"},
-    {id: 6, value: 6, text: "6/8"},
-    {id: 7, value: 7, text: "7/8"},
-    {id: 8, value: 8, text: "8/8"},
-];
+
 
 export default class Form extends Component {
 
@@ -91,7 +59,58 @@ export default class Form extends Component {
         this.setState({date: moment(date).format("YYYY-MM-DD"), time: moment(date).format("HH:mm")});
     };
 
+    validate(){
+        let validateOk = true;
+
+        if (!this.state.temperature){
+            this.tempInput.className = "input-error";
+            validateOk = false;
+        } else {
+            this.tempInput.className = undefined;
+        }
+
+        if (!this.state.humidity){
+            this.humidityInput.className = "input-error";
+            validateOk = false;
+        } else {
+            this.humidityInput.className = undefined;
+        }
+
+        if (!this.state.pressure){
+            this.pressureInput.className = "input-error";
+            validateOk = false;
+        } else {
+            this.pressureInput.className = undefined;
+        }
+
+        if (!this.state.windvelocity){
+            this.windvelocityInput.className = "input-error";
+            validateOk = false;
+        } else {
+            this.windvelocityInput.className = undefined;
+        }
+
+        if (!this.state.rainfall){
+            this.rainfallInput.className = "input-error";
+            validateOk = false;
+        } else {
+            this.rainfallInput.className = undefined;
+        }
+
+        if (!this.state.cloudbase){
+            this.cloudbaseInput.className = "input-error";
+            validateOk = false;
+        } else {
+            this.cloudbaseInput.className = undefined;
+        }
+
+        return validateOk;
+    }
+
     saveWeatherData(){
+
+        console.log(this.validate());
+
         let weatherData = {
             cloudBase: this.state.cloudbase,
             cloudCoverage: this.state.cloudcoverage,
@@ -105,8 +124,14 @@ export default class Form extends Component {
             windDirection: this.state.winddirection,
             windVelocity: this.state.windvelocity
         };
-
-        console.log(weatherData);
+/*
+        serverCommunications.addWeatherData(weatherData).then((response)=> {
+            console.log(response);
+        }, (error) => {
+            console.error(error);
+            alert("Failed to connect to server");
+        });
+*/
     }
 
     render() {
@@ -114,13 +139,13 @@ export default class Form extends Component {
             <div id="form-root">
                 <div id="input-container">
                     <Datainput valueName="DATE & TIME" handleDateChange={this.handleDateChange} inputName="" isDatePicker={true}/>
-                    <Datainput valueName="TEMPERATURE" valueSymbol="°C" handleChange={this.handleChange} inputName="temperature" />
-                    <Datainput valueName="HUMIDITY" valueSymbol="%" handleChange={this.handleChange} inputName="humidity"/>
-                    <Datainput valueName="PRESSURE" valueSymbol="hPa" handleChange={this.handleChange} inputName="pressure"/>
+                    <Datainput inputRef={(input) => { this.tempInput = input; }} valueName="TEMPERATURE" valueSymbol="°C" handleChange={this.handleChange} inputName="temperature" />
+                    <Datainput inputRef={(input) => { this.humidityInput = input; }} valueName="HUMIDITY" valueSymbol="%" handleChange={this.handleChange} inputName="humidity"/>
+                    <Datainput inputRef={(input) => { this.pressureInput = input; }} valueName="PRESSURE" valueSymbol="hPa" handleChange={this.handleChange} inputName="pressure"/>
                     <Datainput valueName="WIND DIRECTION" handleChange={this.handleChange} inputName="winddirection" isDropdown={true} dropdownValues={windValues}/>
-                    <Datainput valueName="WIND VELOCITY" valueSymbol="m/s" handleChange={this.handleChange} inputName="windvelocity"/>
-                    <Datainput valueName="RAINFALL" valueSymbol="mm" handleChange={this.handleChange} inputName="rainfall"/>
-                    <Datainput valueName="CLOUD BASE" valueSymbol="m" handleChange={this.handleChange} inputName="cloudbase"/>
+                    <Datainput inputRef={(input) => { this.windvelocityInput = input; }} valueName="WIND VELOCITY" valueSymbol="m/s" handleChange={this.handleChange} inputName="windvelocity"/>
+                    <Datainput inputRef={(input) => { this.rainfallInput = input; }} valueName="RAINFALL" valueSymbol="mm" handleChange={this.handleChange} inputName="rainfall"/>
+                    <Datainput inputRef={(input) => { this.cloudbaseInput = input; }} valueName="CLOUD BASE" valueSymbol="m" handleChange={this.handleChange} inputName="cloudbase"/>
                     <Datainput valueName="CLOUD COVERAGE" handleChange={this.handleChange} inputName="cloudcoverage" isDropdown={true} dropdownValues={cloudCoverageValues}/>
                     <Datainput valueName="CLOUD TYPE" handleChange={this.handleChange} inputName="cloudtype" isDropdown={true} dropdownValues={cloudValues}/>
                 </div>

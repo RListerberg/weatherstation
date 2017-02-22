@@ -44,6 +44,17 @@
       background: transparent;
     }
 
+    .input-error {
+      background: rgba(213,0,14,.3);
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      /* display: none; <- Crashes Chrome on hover */
+      -webkit-appearance: none;
+      margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
     p {
       margin: 0;
       font-size: 1.1em;

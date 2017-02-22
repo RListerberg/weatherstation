@@ -32,7 +32,7 @@ export default class Datainput extends Component {
     returnInput() {
         return (
             <div id="valueinput-container">
-                <input name={this.props.inputName} type="text" onChange={this.props.handleChange} className={this.props.inputClass}/>
+                <input type="number" ref={this.props.inputRef} name={this.props.inputName} onChange={this.props.handleChange} className={this.props.inputClass}/>
                 <p>{this.props.valueSymbol}</p>
             </div>
         )
