@@ -24,3 +24,7 @@ export var jwtToken = "";
 export function setToken(string) {
     jwtToken = string;
 }
+
+export function setLoggedIn(logged) {
+    loggedIn = logged;
+}
