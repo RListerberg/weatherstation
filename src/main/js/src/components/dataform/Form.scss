@@ -5,6 +5,8 @@
   margin-top: 2em;
 
   #input-container {
+    max-width: 100em;
+    margin: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
