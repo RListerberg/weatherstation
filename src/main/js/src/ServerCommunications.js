@@ -28,8 +28,8 @@ class ServerCommunications {
             Request
                 .post(serverUrl + loginURL)
                 .send({
-                    id: id,
-                    password: password
+                    "id": id,
+                    "password": password
                 })
                 .end((err, res) => {
                     if (err || !res.ok) {
@@ -199,6 +199,7 @@ class ServerCommunications {
     // STATISTICS ======================================================================================================
 
     getStats(statsString) {
+        console.log(serverUrl+statisticsURL+statsString);
         return new Promise((resolve, reject) =>{
            Request
                .get(serverUrl+statisticsURL+statsString)

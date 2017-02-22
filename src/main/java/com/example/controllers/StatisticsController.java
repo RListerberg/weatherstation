@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/statistics")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class StatisticsController {
 
     @Autowired

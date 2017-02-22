@@ -11,7 +11,7 @@ export const weatherDataURL = "/weatherdata/";
 export const stationURL = "/station/";
 export const statisticsAVGURL = "/statistics/avg/";
 export const statisticsURL = "/statistics";
-export const loginURL = "/login/";
+export const loginURL = "/login";
 
 
 /***********************************************************************************************************************
