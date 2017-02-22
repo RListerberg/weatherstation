@@ -1,20 +1,20 @@
 
-import global from 'react';
-
 /***********************************************************************************************************************
  * URLS
  **********************************************************************************************************************/
 
 // Base API URL
-global.serverUrl = "http://localhost:8080";
+export const serverUrl = "http://localhost:8080";
 
 // Endpoints
-global.weatherDataURL = "/weatherdata/";
-global.stationURL = "/station/";
-global.loginURL = "/login/";
+export const weatherDataURL = "/weatherdata/";
+export const stationURL = "/station/";
+export const statisticsURL = "/statistics/";
+export const loginURL = "/login/";
 
 /***********************************************************************************************************************
  * STATES
  **********************************************************************************************************************/
 
-global.loggedIn = false;
+export var loggedIn = false;
+export var jwtToken = "";

@@ -3,6 +3,20 @@
  */
 import Request from "superagent";
 
+import {serverUrl} from './Constants';
+import {loginURL} from './Constants';
+import {weatherDataURL} from './Constants';
+import {stationURL} from './Constants';
+import {statisticsURL} from './Constants';
+
+import {jwtToken} from './Constants';
+
+//const serverUrl = "http://localhost:8080/";
+//const loginURL = "login";
+//const weatherDataURL = "weatherdata/";
+//const stationURL = "station/";
+//const statisticsURL = "statistics/"
+
 
 class ServerCommunications {
 
@@ -20,7 +34,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -36,7 +50,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -50,7 +64,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -58,15 +72,15 @@ class ServerCommunications {
 
     addWeatherData(data) {
         return new Promise((resolve, reject) => {
-            //TODO set JWT header
             Request
                 .post(serverUrl + weatherDataURL)
+                .set("Authorization", jwtToken)
                 .send(data)
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -74,15 +88,15 @@ class ServerCommunications {
 
     updateWeatherData(data) {
         return new Promise((resolve, reject) => {
-            //TODO set JWT header
             Request
                 .put(serverUrl + weatherDataURL + data.id)
+                .set("Authorization", jwtToken)
                 .send(data)
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -90,14 +104,14 @@ class ServerCommunications {
 
     deleteWeatherData(id) {
         return new Promise((resolve, reject) => {
-            //TODO set JWT header
             Request
                 .delete(serverUrl + weatherDataURL + id)
+                .set("Authorization", jwtToken)
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -113,7 +127,7 @@ class ServerCommunications {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -123,11 +137,12 @@ class ServerCommunications {
         return new Promise((resolve, reject) => {
             Request
                 .get(serverUrl + stationURL + id)
+                .set("Authorization",jwtToken)
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -135,15 +150,15 @@ class ServerCommunications {
 
     addStation(data) {
         return new Promise((resolve, reject) => {
-            //TODO set JWT header
             Request
                 .post(serverUrl + stationURL)
                 .send(data)
+                .set("Authorization", jwtToken)
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -151,15 +166,15 @@ class ServerCommunications {
 
     updateStation(data) {
         return new Promise((resolve, reject) => {
-            //TODO set JWT header
             Request
                 .put(serverUrl + stationURL + data.id)
                 .send(data)
+                .set("Authorization", jwtToken)
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
                     }
                 });
         });
@@ -167,14 +182,100 @@ class ServerCommunications {
 
     deleteStation(id) {
         return new Promise((resolve, reject) => {
-            //TODO set JWT header
             Request
                 .delete(serverUrl + stationURL + id)
+                .set("Authorization", jwtToken)
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
-                        resolve(res.body);
+                        resolve(res);
+                    }
+                });
+        });
+    }
+
+    // STATISTICS ======================================================================================================
+
+    getAvgTemp() {
+        return new Promise((resolve, reject) => {
+            Request
+                .get(serverUrl+statisticsURL+"temp")
+                .end((err, res) => {
+                    if (err || !res.ok) {
+                        reject(err);
+                    } else {
+                        resolve(res);
+                    }
+                });
+        });
+    }
+
+    getAvgRainfall() {
+        return new Promise((resolve, reject) => {
+            Request
+                .get(serverUrl+statisticsURL+"rainfall")
+                .end((err, res) => {
+                    if (err || !res.ok) {
+                        reject(err);
+                    } else {
+                        resolve(res);
+                    }
+                });
+        });
+    }
+
+    getAvgWindVelocity() {
+        return new Promise((resolve, reject) => {
+            Request
+                .get(serverUrl+statisticsURL+"wind_velocity")
+                .end((err, res) => {
+                    if (err || !res.ok) {
+                        reject(err);
+                    } else {
+                        resolve(res);
+                    }
+                });
+        });
+    }
+
+    getAvgCloudCoverage() {
+        return new Promise((resolve, reject) => {
+            Request
+                .get(serverUrl+statisticsURL+"cloud_coverage")
+                .end((err, res) => {
+                    if (err || !res.ok) {
+                        reject(err);
+                    } else {
+                        resolve(res);
+                    }
+                });
+        });
+    }
+
+    getAvgHumidity() {
+        return new Promise((resolve, reject) => {
+            Request
+                .get(serverUrl+statisticsURL+"humidity")
+                .end((err, res) => {
+                    if (err || !res.ok) {
+                        reject(err);
+                    } else {
+                        resolve(res);
+                    }
+                });
+        });
+    }
+
+    getAvgPressure() {
+        return new Promise((resolve, reject) => {
+            Request
+                .get(serverUrl+statisticsURL+"pressure")
+                .end((err, res) => {
+                    if (err || !res.ok) {
+                        reject(err);
+                    } else {
+                        resolve(res);
                     }
                 });
         });
