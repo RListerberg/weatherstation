@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import MenuBar from '../menu/MenuBar';
+import Login from '../login/Login';
 import Form from '../dataform/Form';
 import StatsRoot from '../statsroot/StatsRoot';
+import { loggedIn } from '../../Constants';
 
 import './Root.css';
 
@@ -34,9 +36,10 @@ export default class Root extends Component {
 
         return (
             <div id="root">
-                {this.state.loggedIn ? <MenuBar changePage={this.changePage.bind(this)}/> : null}
+                <MenuBar changePage={this.changePage.bind(this)}/>
 
-                {activePage}
+                {loggedIn ? activePage : <Login/> }
+
             </div>
         )
     }

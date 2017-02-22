@@ -108,31 +108,32 @@ export default class Form extends Component {
     }
 
     saveWeatherData(){
+        if (this.validate()) {
 
-        console.log(this.validate());
+            let weatherData = {
+                cloudBase: this.state.cloudbase,
+                cloudCoverage: this.state.cloudcoverage,
+                cloudType: this.state.cloudtype,
+                dataDate: this.state.date,
+                dataTime: this.state.time,
+                humidity: this.state.humidity,
+                pressure: this.state.pressure,
+                rainfall: this.state.rainfall,
+                temp: this.state.temperature,
+                windDirection: this.state.winddirection,
+                windVelocity: this.state.windvelocity
+            };
 
-        let weatherData = {
-            cloudBase: this.state.cloudbase,
-            cloudCoverage: this.state.cloudcoverage,
-            cloudType: this.state.cloudtype,
-            dataDate: this.state.date,
-            dataTime: this.state.time,
-            humidity: this.state.humidity,
-            pressure: this.state.pressure,
-            rainfall: this.state.rainfall,
-            temp: this.state.temperature,
-            windDirection: this.state.winddirection,
-            windVelocity: this.state.windvelocity
-        };
-/*
-        serverCommunications.addWeatherData(weatherData).then((response)=> {
-            console.log(response);
-        }, (error) => {
-            console.error(error);
-            alert("Failed to connect to server");
-        });
-*/
+            serverCommunications.addWeatherData(weatherData).then((response)=> {
+                console.log(response);
+            }, (error) => {
+                console.error(error);
+                alert("Failed to connect to server");
+            });
+
+        }
     }
+
 
     render() {
         return (
