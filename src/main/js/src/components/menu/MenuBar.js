@@ -6,6 +6,7 @@ export default class MenuBar extends Component {
     render() {
         return (
             <div id="menu-root">
+
                 <div id="left-side">
                     <p onClick={() => this.props.changePage("weatherdata")}>Weatherdata</p>
                     <p onClick={() => this.props.changePage("stats")}>Stats</p>
