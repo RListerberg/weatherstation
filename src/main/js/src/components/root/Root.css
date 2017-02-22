@@ -2,6 +2,14 @@
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh; }
+  height: 100vh;
+  background: #066dab;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #066dab 0%, #8abbd7 69%, #c5deea 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #066dab 0%, #8abbd7 69%, #c5deea 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #066dab 0%, #8abbd7 69%, #c5deea 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 /*# sourceMappingURL=Root.css.map */
