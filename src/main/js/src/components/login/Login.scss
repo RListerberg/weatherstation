@@ -2,18 +2,103 @@
 
   width: 100vw;
   height: 100vh;
-  background-color: steelblue;
+  background: steelblue url('../../img/backgroundCloud.png') no-repeat fixed center;
+  background-position-y: 40%;
+  background-position-x: 42%;
 
   #login-form {
     position: absolute;
-    top: 40%;
+    top: 43%;
     left: 50%;
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 190px;
     z-index: 15;
     margin: -100px 0 0 -150px;
-    background: lightgrey;
+    background: transparent;
+    text-align: center;
+    align-items: center;
+
+
+      #login-graphics{
+        padding: 0px;
+      }
+
+    .loginInputs {
+      font-size: 1.1em;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      border-bottom: 1px solid black;
+    }
+
+    .loginInputs-active{
+      font-size: 1.1em;
+      border: 0px;
+      outline: 0;
+      background: transparent;
+      border-bottom: solid darkred 1px;
+    }
+
+    .errorDiv-active{
+      overflow-y: hidden;
+      min-width: 400px;
+
+      transition-property: all;
+      transition-duration: 2.5s;
+      transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+      visibility: visible;
+      color: #D8000C;
+      background-color: #FFBABA;
+      font-size: 1.1em;
+      position: relative;
+      right: 39%;
+    }
+
   }
 
+
+  #titleHeader{
+    font-family: Arial;
+  }
+
+  #loginBut {
+    border-radius: 4px;
+    background-color: lightskyblue;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 1.1em;
+    padding: 8px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  #loginBut span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  #loginBut span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  #loginBut:hover span {
+    padding-right: 25px;
+  }
+
+  #loginBut:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
 
 }
