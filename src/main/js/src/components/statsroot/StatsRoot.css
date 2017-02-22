@@ -15,4 +15,11 @@
   justify-content: center;
   background-color: green; }
 
+.nextlink {
+  text-decoration: underline;
+  color: steelblue; }
+
+.nextlink:hover {
+  cursor: pointer; }
+
 /*# sourceMappingURL=StatsRoot.css.map */

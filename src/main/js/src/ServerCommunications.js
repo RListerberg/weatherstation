@@ -7,6 +7,7 @@ const serverUrl = "http://localhost:8080/";
 const loginURL = "login";
 const weatherDataURL = "weatherdata/";
 const stationURL = "station/";
+const statisticsUrl = "statistics";
 
 
 class ServerCommunications {
@@ -185,6 +186,20 @@ class ServerCommunications {
                         resolve(res);
                     }
                 });
+        });
+    }
+
+    getStats(page) {
+        return new Promise((resolve, reject) => {
+            Request
+                .get(serverUrl + statisticsUrl + '?page=' + page)
+                .end((err, res) => {
+                if (err || !res.ok) {
+                    reject(err);
+                } else {
+                    resolve(res);
+                }
+            });
         });
     }
 }

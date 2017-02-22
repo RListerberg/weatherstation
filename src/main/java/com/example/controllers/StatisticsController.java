@@ -17,6 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/statistics")
+@CrossOrigin(origins = "*")
 public class StatisticsController {
 
     @Autowired
@@ -25,6 +26,11 @@ public class StatisticsController {
     @GetMapping
     public Iterable<WeatherData> findAll(Pageable pageable) {
         return statisticsRepository.findAll(pageable);
+    }
+
+    @RequestMapping(value="/{stationId}", method = RequestMethod.GET)
+    public Page<WeatherData> findByStation(@PathVariable int stationId, Pageable pageable) {
+        return statisticsRepository.findByStationId(stationId, pageable);
     }
 
     // AVG METHODS
