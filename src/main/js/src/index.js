@@ -7,6 +7,6 @@ import StatsRoot from './components/statsroot/StatsRoot';
 import './index.css';
 
 ReactDOM.render(
-  <Root />,
+  <Login />,
   document.getElementById('root')
 );

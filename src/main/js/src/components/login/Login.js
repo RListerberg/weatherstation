@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Login.css';
 import {serverCommunications} from '../../ServerCommunications';
+import {setToken} from '../../Constants';
+import {setLoggedIn} from '../../Constants';
 
 export default class Login extends Component {
 
@@ -28,13 +30,18 @@ export default class Login extends Component {
     handleLogin(){
         if(this.state.id == "" || null)
         {
-            this.setState({errorDiv: "errorDiv-active" , errorMessage : "Please fill out the fields"});
+            this.setState({errorDiv: "errorDiv-active-1" , errorMessage : "Please fill out the fields"});
+
         }
         else{
             serverCommunications.doLogin(this.state.id, this.state.password).then((response)=> {
                 console.log(response);
-                this.setState({token:response.text});
-                serverCommunications.getOneStation(this.state.id, this.state.token);
+                setToken(response.text);
+                serverCommunications.getOneStation(this.state.id).then((response)=>{
+                    console.log("getOneStation: " + response)
+                    setLoggedIn(true);
+                });
+
             }, (error) => {
                 this.setState({loginInputs: "loginInputs-active", errorDiv: "errorDiv-active" , errorMessage : "Wrong password or StationID, please try again"});
                 console.log(error);
@@ -46,6 +53,7 @@ export default class Login extends Component {
     render() {
         return (
             <div id="login-root">
+                <div id="backgroundCloud">
                 <div id="login-form">
                     <div>
                         <h1 id="titleHeader" name="title">Nimbus Weatherstation</h1>
@@ -55,9 +63,10 @@ export default class Login extends Component {
                             <input type="text" placeholder="StationsID" id="stationIdInp" className={this.state.loginInputs} value={this.state.id} onChange={this.handleId} />
                             <input type="password" placeholder="Password" id="passwordInp" className={this.state.loginInputs} value={this.state.password} onChange={this.handlePassword} />
                         <div>
-                            <button type="button" className="LoginBut" id="loginBut" onClick={this.handleLogin.bind(this)}><span>Login</span></button>
+                            <button type="button" id="loginBut" onClick={this.handleLogin.bind(this)}><span>Login</span></button>
                         </div>
                     </div>
+                </div>
                 </div>
 
             </div>
