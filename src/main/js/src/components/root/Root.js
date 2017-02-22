@@ -11,8 +11,7 @@ export default class Root extends Component {
     constructor(props){
         super(props);
         this.state = {
-            loggedIn: true, // <--- Temporarily until loginform is done
-            activePage: "weatherdata"
+            activePage: "stats"
         };
     }
 
@@ -30,13 +29,19 @@ export default class Root extends Component {
             case "stats":
                 activePage = <StatsRoot/>;
                 break;
+            case "login":
+                activePage = <Login/>;
+                break;
             default:
-                activePage = <Form/>;
+                activePage = <StatsRoot/>;
+                break;
         }
 
         return (
             <div id="root">
                 <MenuBar changePage={this.changePage.bind(this)}/>
+
+
 
                 {loggedIn ? activePage : <Login changePage={this.changePage.bind(this)}/> }
 
