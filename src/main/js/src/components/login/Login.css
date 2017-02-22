@@ -32,15 +32,13 @@
     #login-root #login-form .errorDiv-active {
       overflow-y: hidden;
       min-width: 400px;
-      transition-property: all;
-      transition-duration: 2.5s;
-      transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
       visibility: visible;
       color: #D8000C;
-      background-color: #FFBABA;
       font-size: 1.1em;
       position: relative;
       right: 39%; }
+  #login-root .errorMessageID {
+    margin: 0; }
   #login-root #titleHeader {
     font-family: Arial; }
   #login-root #loginBut {

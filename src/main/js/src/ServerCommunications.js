@@ -28,8 +28,8 @@ class ServerCommunications {
             Request
                 .post(serverUrl + loginURL)
                 .send({
-                    id: id,
-                    password: password
+                    "id": id,
+                    "password": password
                 })
                 .end((err, res) => {
                     if (err || !res.ok) {

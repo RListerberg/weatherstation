@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import {serverCommunications} from '../../ServerCommunications';
+import {setToken} from '../../Constants';
 
 export default class Login extends Component {
 
@@ -33,8 +34,10 @@ export default class Login extends Component {
         else{
             serverCommunications.doLogin(this.state.id, this.state.password).then((response)=> {
                 console.log(response);
-                this.setState({token:response.text});
-                serverCommunications.getOneStation(this.state.id, this.state.token);
+
+                // this.setState({token:response.text});
+                setToken(response.text);
+                serverCommunications.getOneStation(this.state.id);
             }, (error) => {
                 this.setState({loginInputs: "loginInputs-active", errorDiv: "errorDiv-active" , errorMessage : "Wrong password or StationID, please try again"});
                 console.log(error);
