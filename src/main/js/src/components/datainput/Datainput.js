@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Datetime from 'react-datetime'
 import './Datainput.css';
-import 'react-date-picker/index.css'
+
 
 let date = new Date();
 

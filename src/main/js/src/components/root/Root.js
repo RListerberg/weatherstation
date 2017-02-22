@@ -34,7 +34,7 @@ export default class Root extends Component {
 
         return (
             <div id="root">
-                {this.state.loggedIn ? <MenuBar changePage={this.changePage.bind(this)}/> : null}
+                <MenuBar changePage={this.changePage.bind(this)}/>
 
                 {activePage}
             </div>

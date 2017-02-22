@@ -3,6 +3,7 @@ import './Login.css';
 import {serverCommunications} from '../../ServerCommunications';
 import {setToken} from '../../Constants';
 import {setLoggedIn} from '../../Constants';
+import {setStationsID} from '../../Constants';
 
 export default class Login extends Component {
 
@@ -31,15 +32,15 @@ export default class Login extends Component {
         if(this.state.id == "" || null)
         {
             this.setState({errorDiv: "errorDiv-active-1" , errorMessage : "Please fill out the fields"});
-
         }
         else{
             serverCommunications.doLogin(this.state.id, this.state.password).then((response)=> {
                 console.log(response);
                 setToken(response.text);
                 serverCommunications.getOneStation(this.state.id).then((response)=>{
-                    console.log("getOneStation: " + response)
+                    console.log("getStationNmb: " + response.body.id);
                     setLoggedIn(true);
+                    setStationsID(response.body.id);
                 });
 
             }, (error) => {

@@ -85,12 +85,8 @@
     font-family: 'Sansita', sans-serif;
   }
 
-
   #loginBut {
     border-radius: 4px;
-    //background-color: lightskyblue;
-    //border: none;
-
     background-color: rgba(157, 213, 36, 0.6);
     border: 1px solid rgb(109, 148, 25);
     color: #FFFFFF;
@@ -106,30 +102,4 @@
       color: #222222;
     }
   }
-
-  //#loginBut span {
-  //  cursor: pointer;
-  //  display: inline-block;
-  //  position: relative;
-  //  transition: 0.5s;
-  //}
-  //
-  //#loginBut span:after {
-  //  content: '\00bb';
-  //  position: absolute;
-  //  opacity: 0;
-  //  top: 0;
-  //  right: -20px;
-  //  transition: 0.5s;
-  //}
-  //
-  //#loginBut:hover span {
-  //  padding-right: 25px;
-  //}
-  //
-  //#loginBut:hover span:after {
-  //  opacity: 1;
-  //  right: 0;
-  //}
-
 }
