@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import Datainput from '../datainput/Datainput';
+import WeatherdataContainer from '../weatherdata-container/WeatherdataContainer';
 import { windValues, cloudValues, cloudCoverageValues, currentStation } from '../../Constants';
 import { serverCommunications } from '../../ServerCommunications';
 import './Form.css';
-
-const date = new Date();
-
 
 export default class Form extends Component {
 
     constructor(props){
         super(props);
         this.state = ({
-            date: moment(date).format("YYYY-MM-DD"),
-            time: moment(date).format("HH:mm:ss"),
+            date: moment(new Date()).format("YYYY-MM-DD"),
+            time: moment(new Date()).format("HH:mm:ss"),
             winddirection: windValues[0].value,
             cloudtype: cloudValues[0].value,
-            cloudcoverage: 1
+            cloudcoverage: 1,
+            weatherDataHistory: []
         });
+    }
+
+    componentWillMount(){
+        this.getHistoryData();
     }
 
     handleChange = (event) => {
@@ -56,7 +59,7 @@ export default class Form extends Component {
     };
 
     handleDateChange = (date) => {
-        this.setState({date: moment(date).format("YYYY-MM-DD"), time: moment(date).format("HH:mm")});
+        this.setState({date: moment(date).format("YYYY-MM-DD"), time: moment(date).format("HH:mm:ss")});
     };
 
     validate(){
@@ -107,11 +110,20 @@ export default class Form extends Component {
         return validateOk;
     }
 
+    getHistoryData(){
+        serverCommunications.getStats("/" + currentStation.id + "?size=5&sort=dataDate,desc&sort=dataTime,desc").then((response) => {
+            this.setState({weatherDataHistory: response.body.content});
+        }, (error) => {
+            console.error(error);
+        });
+    }
+
     saveWeatherData(){
         if (this.validate()) {
 
             let weatherData = {
                 cloudBase: this.state.cloudbase,
+                cloudCoverage: this.state.cloudcoverage,
                 cloudType: this.state.cloudtype,
                 dataDate: this.state.date,
                 dataTime: this.state.time,
@@ -125,7 +137,27 @@ export default class Form extends Component {
             };
 
             serverCommunications.addWeatherData(weatherData).then((response)=> {
-                console.log(response);
+                this.setState({
+                    winddirection: windValues[0].value,
+                    cloudtype: cloudValues[0].value,
+                    cloudcoverage: 1,
+                    cloudBase: "",
+                    humidity: "",
+                    pressure: "",
+                    rainfall: "",
+                    temp: "",
+                    windvelocity: ""
+                });
+
+                this.tempInput.value = "";
+                this.humidityInput.value = "";
+                this.rainfallInput.value = "";
+                this.windvelocityInput.value = "";
+                this.pressureInput.value = "";
+                this.cloudbaseInput = "";
+
+                this.getHistoryData();
+
             }, (error) => {
                 console.error(error);
                 alert("Failed to connect to server");
@@ -134,10 +166,18 @@ export default class Form extends Component {
         }
     }
 
+    renderHistory(){
+        return this.state.weatherDataHistory.map ((weatherdata) => {
+            return (
+                <WeatherdataContainer weatherdata={weatherdata}/>
+            )
+        })
+    }
 
     render() {
         return (
             <div id="form-root">
+
                 <div id="input-container">
                     <Datainput valueName="DATE & TIME" handleDateChange={this.handleDateChange} inputName="" isDatePicker={true}/>
                     <Datainput inputRef={(input) => { this.tempInput = input; }} valueName="TEMPERATURE" valueSymbol="°C" handleChange={this.handleChange} inputName="temperature" />
@@ -150,9 +190,17 @@ export default class Form extends Component {
                     <Datainput valueName="CLOUD COVERAGE" handleChange={this.handleChange} inputName="cloudcoverage" isDropdown={true} dropdownValues={cloudCoverageValues}/>
                     <Datainput valueName="CLOUD TYPE" handleChange={this.handleChange} inputName="cloudtype" isDropdown={true} dropdownValues={cloudValues}/>
                 </div>
+
                 <div id="button-container">
                     <div id="save-button" onClick={() => this.saveWeatherData()}><p>SAVE</p></div>
                 </div>
+
+                <h2 id="history-header">HISTORY</h2>
+                <hr/>
+                <div id="weatherdata-container">
+                    {this.renderHistory()}
+                </div>
+
             </div>
         )
     }
