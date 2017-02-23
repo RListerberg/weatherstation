@@ -16,5 +16,7 @@
   #menu-root #right-side {
     display: flex;
     margin-right: .5em; }
+    #menu-root #right-side p {
+      margin: 12px 0px 10px 10px; }
 
 /*# sourceMappingURL=MenuBar.css.map */

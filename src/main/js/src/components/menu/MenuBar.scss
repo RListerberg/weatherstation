@@ -21,5 +21,14 @@
   #right-side {
     display: flex;
     margin-right: .5em;
+
+    p{
+      margin: 12px 0px 10px 10px;
+    }
   }
+
+  //#right-side:hover #dropdownItem{
+  //  display: block;
+  //}
+
 }
