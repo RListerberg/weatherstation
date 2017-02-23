@@ -199,6 +199,7 @@ class ServerCommunications {
     // STATISTICS ======================================================================================================
 
     getStats(statsString) {
+        console.log(serverUrl+statisticsURL+statsString);
         return new Promise((resolve, reject) =>{
            Request
                .get(serverUrl+statisticsURL+statsString)
