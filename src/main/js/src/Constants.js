@@ -22,6 +22,7 @@ export var loggedIn = false;
 export var jwtToken = "";
 export var stationsID = "";
 export var currentStation = "";
+export var loginTag = "Log in";
 
 export function setToken(string) {
     jwtToken = string;
@@ -37,6 +38,14 @@ export function setStationsID(id) {
 
 export function setStation(station) {
     currentStation = station;
+}
+
+export function setLoginTag(tag) {
+    loginTag = tag;
+}
+
+export function getLoginTag() {
+    return loginTag;
 }
 
 

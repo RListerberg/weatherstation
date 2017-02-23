@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './Login.css';
 import {serverCommunications} from '../../ServerCommunications';
-import {setToken, setLoggedIn, setStationsID, setStation} from '../../Constants';
+import {setToken, setLoggedIn, setStationsID, setStation, setLoginTag} from '../../Constants';
 
 export default class Login extends Component {
 
     constructor(props){
         super(props);
-
         this.state = ({
             id: "",
             password: "",
@@ -61,7 +60,7 @@ export default class Login extends Component {
                             <input type="text" placeholder="StationsID" id="stationIdInp" className={this.state.loginInputs} value={this.state.id} onChange={this.handleId} />
                             <input type="password" placeholder="Password" id="passwordInp" className={this.state.loginInputs} value={this.state.password} onChange={this.handlePassword} />
                         <div>
-                            <button type="button" id="loginBut" onClick={() => this.handleLogin()}><span>Login</span></button>
+                            <button type="submit" id="loginBut" onClick={() => this.handleLogin()}><span>Login</span></button>
                         </div>
                     </div>
                 </div>
