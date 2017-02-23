@@ -9,7 +9,8 @@
  * ========================================================================== */
 #form-root {
   height: 100%;
-  margin-top: 2em; }
+  margin-top: 2em;
+  padding-bottom: 2em; }
   #form-root #input-container {
     max-width: 100em;
     margin: auto;
@@ -23,7 +24,7 @@
   #form-root #button-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 10em; }
+    margin-bottom: 3em; }
     #form-root #button-container #save-button {
       cursor: pointer;
       width: 8%;
@@ -35,6 +36,12 @@
         text-align: center;
         margin-top: .7em;
         margin-bottom: .7em; }
+    #form-root #button-container #save-button:hover {
+      background-color: rgba(109, 148, 25, 0.6); }
+    #form-root #button-container #save-button:active {
+      background-color: #6d9419; }
+      #form-root #button-container #save-button:active p {
+        color: white; }
   #form-root #weatherdata-container {
     max-width: 100em;
     margin: auto;
@@ -46,10 +53,11 @@
   #form-root #history-header {
     text-align: center;
     margin: 0;
-    font-weight: 300; }
+    font-weight: 300;
+    letter-spacing: .2em; }
   #form-root hr {
     border: 0;
-    margin-top: 0;
+    margin: 0;
     height: 1px;
     background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.75), transparent); }
 
