@@ -3,7 +3,6 @@ import {serverCommunications} from "../../ServerCommunications";
 import "./StatsRoot.css";
 import StatsDetail from "../statsdetail/StatsDetail";
 
-let output = "";
 
 export default class StatsRoot extends Component {
     constructor(props) {
@@ -20,9 +19,7 @@ export default class StatsRoot extends Component {
     renderData() {
         return this.state.array.map((currPoint) => {
             return (
-                <div key={currPoint.title}>
                     <StatsDetail title={currPoint.title} value={currPoint.value} unit={currPoint.unit}/>
-                </div>
             );
         });
     }
@@ -38,38 +35,38 @@ export default class StatsRoot extends Component {
             var tempArray = [];
 
             tempArray.push({
-                title: "Temperature",
-                value: res[0].body,
-                unit: "C"
+                title: "TEMPERATURE",
+                value: res[0].body.toFixed(2),
+                unit: "°C"
             });
 
             tempArray.push({
-                title: "Rainfall",
-                value: res[1].body,
+                title: "RAINFALL",
+                value: res[1].body.toFixed(2),
                 unit: "mm"
             });
 
             tempArray.push({
-                title: "Wind velocity",
-                value: res[2].body,
+                title: "WIND VELOCITY",
+                value: res[2].body.toFixed(2),
                 unit: "m/s"
             });
 
             tempArray.push({
-                title: "Cloud coverage",
-                value: res[3].body,
+                title: "CLOUD COVERAGE",
+                value: res[3].body.toFixed(2),
                 unit: "/8"
             });
 
             tempArray.push({
-                title: "Humidity",
-                value: res[4].body,
+                title: "HUMIDITY",
+                value: res[4].body.toFixed(2),
                 unit: "%"
             });
 
             tempArray.push({
-                title: "Pressure",
-                value: res[5].body,
+                title: "PRESSURE",
+                value: res[5].body.toFixed(1),
                 unit: "hPa"
             });
 
@@ -79,10 +76,14 @@ export default class StatsRoot extends Component {
     }
 
     render() {
-        console.log("Im rendering!"+output);
         return (
-            <div id="stats-root">
-                {this.renderData()}
+            <div className="stats-root">
+                <div className="details-container">
+                    <h2>Average weather total:</h2>
+                </div>
+                <div className="details-container">
+                    {this.renderData()}
+                </div>
             </div>
         )
     }

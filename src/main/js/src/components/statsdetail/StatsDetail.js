@@ -14,8 +14,7 @@ export default class StatsDetail extends Component {
                     <p>{this.props.title}</p>
                 </div>
                 <div className="stats-info">
-                    <p>{this.props.value}</p>
-                    <p>{this.props.unit}</p>
+                    <p><span className="stats-value">{this.props.value}</span> <span className="stats-unit">{this.props.unit}</span></p>
                 </div>
             </div>
         )

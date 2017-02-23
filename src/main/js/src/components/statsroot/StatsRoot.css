@@ -7,7 +7,41 @@
 /*
  * Animations
  * ========================================================================== */
-#stats-root {
-  background-color: rgba(255, 255, 255, 0.2); }
+.stats-root {
+  height: 100%;
+  margin-top: 2em; }
+  .stats-root .details-container {
+    max-width: 100em;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center; }
+    .stats-root .details-container .stats-container {
+      max-width: 15%;
+      min-width: 150px;
+      margin: .5em;
+      padding: 1em .5em;
+      border-radius: .7em;
+      background-color: rgba(255, 255, 255, 0.2); }
+    .stats-root .details-container .stats-title {
+      text-align: center; }
+      .stats-root .details-container .stats-title p {
+        margin-top: 0px;
+        font-size: .8em; }
+    .stats-root .details-container .stats-info {
+      text-align: center; }
+      .stats-root .details-container .stats-info p {
+        font-size: 1.1em;
+        color: white; }
+      .stats-root .details-container .stats-info .stats-value {
+        opacity: 1;
+        font-size: 2em;
+        font-style: oblique; }
+      .stats-root .details-container .stats-info .stats-unit {
+        opacity: 0.6; }
+  .stats-root h2 {
+    color: white; }
 
 /*# sourceMappingURL=StatsRoot.css.map */
