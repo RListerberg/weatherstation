@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import Datainput from '../datainput/Datainput';
+import WeatherdataContainer from '../weatherdata-container/WeatherdataContainer';
 import { windValues, cloudValues, cloudCoverageValues, currentStation } from '../../Constants';
 import { serverCommunications } from '../../ServerCommunications';
 import './Form.css';
 
 const date = new Date();
-
 
 export default class Form extends Component {
 
@@ -17,7 +17,17 @@ export default class Form extends Component {
             time: moment(date).format("HH:mm:ss"),
             winddirection: windValues[0].value,
             cloudtype: cloudValues[0].value,
-            cloudcoverage: 1
+            cloudcoverage: 1,
+            weatherDataHistory: []
+        });
+    }
+
+    componentWillMount(){
+        serverCommunications.getStats("/1?size=5&sort=dataDate,desc&sort=dataTime,desc").then((response) => {
+            console.log(response);
+            this.setState({weatherDataHistory: response.body});
+        }, (error) => {
+            console.error(error);
         });
     }
 
@@ -112,6 +122,7 @@ export default class Form extends Component {
 
             let weatherData = {
                 cloudBase: this.state.cloudbase,
+                cloudCoverage: this.state.cloudcoverage,
                 cloudType: this.state.cloudtype,
                 dataDate: this.state.date,
                 dataTime: this.state.time,
@@ -134,6 +145,11 @@ export default class Form extends Component {
         }
     }
 
+    renderHistory(){
+
+        return <WeatherdataContainer />
+    }
+
 
     render() {
         return (
@@ -153,6 +169,15 @@ export default class Form extends Component {
                 <div id="button-container">
                     <div id="save-button" onClick={() => this.saveWeatherData()}><p>SAVE</p></div>
                 </div>
+
+                <h2 id="history-header">HISTORY</h2>
+                <hr/>
+                <div id="weatherdata-container">
+
+
+
+                </div>
+
             </div>
         )
     }

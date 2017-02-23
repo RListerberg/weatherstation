@@ -22,7 +22,8 @@
     font-family: "Segoe UI", "HelveticaNeue-Light", sans-serif; }
   #form-root #button-container {
     display: flex;
-    justify-content: center; }
+    justify-content: center;
+    margin-bottom: 10em; }
     #form-root #button-container #save-button {
       cursor: pointer;
       width: 8%;
@@ -34,5 +35,22 @@
         text-align: center;
         margin-top: .7em;
         margin-bottom: .7em; }
+  #form-root #weatherdata-container {
+    max-width: 100em;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center; }
+  #form-root #history-header {
+    text-align: center;
+    margin: 0;
+    font-weight: 300; }
+  #form-root hr {
+    border: 0;
+    margin-top: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.75), transparent); }
 
 /*# sourceMappingURL=Form.css.map */

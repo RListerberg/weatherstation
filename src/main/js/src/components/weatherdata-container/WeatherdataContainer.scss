@@ -1,0 +1,20 @@
+.weatherdata-root {
+  width: 15%;
+  margin: .5em;
+  padding: 1em .5em;
+  border-radius: .7em;
+  background-color: rgba(255, 255, 255, 0.2);
+
+  p {
+    text-align: center;
+    margin: 0 0 .5em;
+  }
+
+  table {
+    width: 100%;
+
+    .weather-value {
+      text-align: right;
+    }
+  }
+}

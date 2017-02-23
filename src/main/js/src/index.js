@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root/Root';
+import Form from './components/dataform/Form';
+
 
 import Login from './components/login/Login';
 import StatsRoot from './components/statsroot/StatsRoot';
