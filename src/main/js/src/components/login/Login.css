@@ -1,9 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Sansita");
 #login-root {
+  display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background: steelblue url("../../img/backgroundCloud.png") no-repeat fixed center;
-  background-position-y: 40%;
-  background-position-x: 42%; }
+  background: #066dab;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #066dab 0%, #8abbd7 69%, #c5deea 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #066dab 0%, #8abbd7 69%, #c5deea 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #066dab 0%, #8abbd7 69%, #c5deea 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
+  #login-root #backgroundCloud {
+    width: 100vw;
+    height: 100vh;
+    background: url("../../img/backgroundCloud.png") no-repeat fixed center;
+    background-position-y: 40%;
+    background-position-x: 42%; }
   #login-root #login-form {
     position: absolute;
     top: 43%;
@@ -22,7 +36,7 @@
       border: 0;
       outline: 0;
       background: transparent;
-      border-bottom: 1px solid black; }
+      border-bottom: 1.5px solid black; }
     #login-root #login-form .loginInputs-active {
       font-size: 1.1em;
       border: 0px;
@@ -32,21 +46,27 @@
     #login-root #login-form .errorDiv-active {
       overflow-y: hidden;
       min-width: 400px;
-      transition-property: all;
-      transition-duration: 2.5s;
-      transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
       visibility: visible;
       color: #D8000C;
-      background-color: #FFBABA;
       font-size: 1.1em;
       position: relative;
       right: 39%; }
+    #login-root #login-form .errorDiv-active-1 {
+      overflow-y: hidden;
+      min-width: 400px;
+      visibility: visible;
+      color: #D8000C;
+      font-size: 1.1em;
+      text-align: left;
+      right: 39%; }
+    #login-root #login-form #errorMessageID {
+      margin: 0; }
   #login-root #titleHeader {
-    font-family: Arial; }
+    font-family: 'Sansita', sans-serif; }
   #login-root #loginBut {
     border-radius: 4px;
-    background-color: lightskyblue;
-    border: none;
+    background-color: rgba(157, 213, 36, 0.6);
+    border: 1px solid #6d9419;
     color: #FFFFFF;
     text-align: center;
     font-size: 1.1em;
@@ -55,22 +75,7 @@
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px; }
-  #login-root #loginBut span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s; }
-  #login-root #loginBut span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s; }
-  #login-root #loginBut:hover span {
-    padding-right: 25px; }
-  #login-root #loginBut:hover span:after {
-    opacity: 1;
-    right: 0; }
+    #login-root #loginBut span {
+      color: #222222; }
 
 /*# sourceMappingURL=Login.css.map */

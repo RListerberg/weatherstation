@@ -20,6 +20,20 @@ export const loginURL = "/login";
 
 export var loggedIn = false;
 export var jwtToken = "";
+export var stationsID = "";
+
+export function setToken(string) {
+    jwtToken = string;
+}
+
+export function setLoggedIn(logged) {
+    loggedIn = logged;
+}
+
+export function setStationsID(id) {
+    stationsID = id;
+}
+
 
 /***********************************************************************************************************************
  * COMPONENT-DATA
@@ -50,6 +64,7 @@ export const cloudValues = [
     {id:13, value: "Floccus", text: "Floccus"}
 ];
 export const cloudCoverageValues = [
+    {id: 0, value: 0, text: "0/8"},
     {id: 1, value: 1, text: "1/8"},
     {id: 2, value: 2, text: "2/8"},
     {id: 3, value: 3, text: "3/8"},

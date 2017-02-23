@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Datetime from 'react-datetime'
 import './Datainput.css';
-import 'react-date-picker/index.css'
+
 
 let date = new Date();
 
@@ -32,7 +32,7 @@ export default class Datainput extends Component {
     returnInput() {
         return (
             <div id="valueinput-container">
-                <input name={this.props.inputName} type="text" onChange={this.props.handleChange} className={this.props.inputClass}/>
+                <input type="number" ref={this.props.inputRef} name={this.props.inputName} onChange={this.props.handleChange} className={this.props.inputClass}/>
                 <p>{this.props.valueSymbol}</p>
             </div>
         )
