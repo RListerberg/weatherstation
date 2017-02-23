@@ -1,6 +1,8 @@
 package com.example.controllers;
 
+import com.example.entities.Station;
 import com.example.entities.WeatherData;
+import com.example.repositories.StationRepository;
 import com.example.repositories.StatisticsRepository;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,9 +26,23 @@ public class StatisticsController {
     @Autowired
     private StatisticsRepository statisticsRepository;
 
+    @Autowired
+    private StationRepository stationRepository;
+
     @GetMapping
     public Iterable<WeatherData> findAll(Pageable pageable) {
         return statisticsRepository.findAll(pageable);
+    }
+
+    @GetMapping(value="/stations")
+    public Iterable<Integer> findAllStationIds() {
+        List<Station> stationList = stationRepository.findAll();
+        List<Integer> idList = new ArrayList<>();
+        stationList.forEach((curr) -> {
+                idList.add(curr.getId());
+        });
+
+        return idList;//stationRepository.getAllStationIds();
     }
 
     @RequestMapping(value="/{stationId}", method = RequestMethod.GET)

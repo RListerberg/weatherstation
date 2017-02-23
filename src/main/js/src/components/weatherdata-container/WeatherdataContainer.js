@@ -3,62 +3,48 @@ import './WeatherdataContainer.css';
 
 export default class WeatherdataContainer extends Component {
 
-    render() {
+    fillTable(){
+        return this.props.weatherDataArray.map((weatherdata) => {
+            return (
+                <tr className="table-row">
+                    <td>{weatherdata.dataDate} {weatherdata.dataTime}</td>
+                    <td>{weatherdata.temp}°C</td>
+                    <td>{weatherdata.humidity}%</td>
+                    <td>{weatherdata.pressure}hPa</td>
+                    <td>{weatherdata.windDirection}</td>
+                    <td>{weatherdata.windVelocity}m/s</td>
+                    <td>{weatherdata.rainfall}mm</td>
+                    <td>{weatherdata.cloudBase}m</td>
+                    <td>{weatherdata.cloudCoverage}/8</td>
+                    <td>{weatherdata.cloudType}</td>
+                </tr>
+            )
+        });
+    }
 
+    render() {
         return (
             <div className="weatherdata-root">
-
-                <div className="weatherdata-header">
-                    <p>{this.props.weatherdata.dataDate} {this.props.weatherdata.dataTime}</p>
-                </div>
-
                 <div className="weatherdata-table">
                     <table>
+                        <thead>
                         <tr>
-                            <td>Temperature:</td>
-                            <td className="weather-value">{this.props.weatherdata.temp}°C</td>
+                            <th>Date</th>
+                            <th>Temperature</th>
+                            <th>Humidity</th>
+                            <th>Pressure</th>
+                            <th>Wind direction</th>
+                            <th>Wind velocity</th>
+                            <th>Rainfall</th>
+                            <th>Cloud base</th>
+                            <th>Cloud coverage</th>
+                            <th>Cloud type</th>
                         </tr>
+                        </thead>
 
-                        <tr>
-                            <td>Humidity:</td>
-                            <td className="weather-value">{this.props.weatherdata.humidity}%</td>
-                        </tr>
-
-                        <tr>
-                            <td>Pressure:</td>
-                            <td className="weather-value">{this.props.weatherdata.pressure}hPa</td>
-                        </tr>
-
-                        <tr>
-                            <td>Wind direction:</td>
-                            <td className="weather-value">{this.props.weatherdata.windDirection}</td>
-                        </tr>
-
-                        <tr>
-                            <td>Wind velocity:</td>
-                            <td className="weather-value">{this.props.weatherdata.windVelocity}m/s</td>
-                        </tr>
-
-                        <tr>
-                            <td>Rainfall:</td>
-                            <td className="weather-value">{this.props.weatherdata.rainfall}mm</td>
-                        </tr>
-
-                        <tr>
-                            <td>Cloud base:</td>
-                            <td className="weather-value">{this.props.weatherdata.cloudBase}m</td>
-                        </tr>
-
-                        <tr>
-                            <td>Cloud coverage:</td>
-                            <td className="weather-value">{this.props.weatherdata.cloudCoverage}/8</td>
-                        </tr>
-
-                        <tr>
-                            <td>Cloud type:</td>
-                            <td className="weather-value">{this.props.weatherdata.cloudType}</td>
-                        </tr>
-
+                        <tbody>
+                            {this.fillTable()}
+                        </tbody>
                     </table>
                 </div>
             </div>

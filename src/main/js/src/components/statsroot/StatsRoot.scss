@@ -1,7 +1,8 @@
 @import "../../variables";
+@import url('https://fonts.googleapis.com/css?family=Sansita');
 
 .stats-root {
-  height: 100%;
+  height: 100vh;
   margin-top: 2em;
 
   .details-container {
@@ -47,8 +48,58 @@
     }
   }
 
+  .stats-title-container {
+    max-width: 100em;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: left;
+    justify-content: left;
+  }
+
+  #title-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    span {
+      text-align: right;
+    }
+
+    .stationDropDown {
+      height: 2.2em;
+      font-family: Sansita, sans-serif;
+      color: white;
+      font-size: 2em;
+      text-align: right;
+      border: 0;
+      outline: 0;
+      background-color: rgba(255, 255, 255, 0.0);
+      border-radius: .3em;
+      padding: .2em;
+
+      option {
+        font-size: .2em;
+      }
+    }
+  }
+
   h2 {
+    font-family: Sansita, sans-serif;
+    font-size: 3em;
     color: white;
+    margin-bottom: 20px;
+    margin-top:20px;
+  }
+
+  .weatherdata-root {
+    width: 100%;
+
+    table {
+      font-size: 1em;
+    }
   }
 
 }

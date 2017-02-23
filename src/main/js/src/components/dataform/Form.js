@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import Datainput from '../datainput/Datainput';
-import WeatherdataContainer from '../weatherdata-container2/WeatherdataContainer';
+import WeatherdataContainer from '../weatherdata-container/WeatherdataContainer';
 import { windValues, cloudValues, cloudCoverageValues, currentStation } from '../../Constants';
 import { serverCommunications } from '../../ServerCommunications';
 import './Form.css';

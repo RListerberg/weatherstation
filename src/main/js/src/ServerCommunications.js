@@ -2,15 +2,7 @@
  * Server communications class
  */
 import Request from "superagent";
-
-import {serverUrl} from './Constants';
-import {loginURL} from './Constants';
-import {weatherDataURL} from './Constants';
-import {stationURL} from './Constants';
-import {statisticsAVGURL} from './Constants';
-import {statisticsURL} from './Constants';
-
-import {jwtToken} from './Constants';
+import {serverUrl, loginURL, weatherDataURL, stationURL, statisticsAVGURL, statisticsURL, jwtToken} from "./Constants";
 
 //const serverUrl = "http://localhost:8080/";
 //const loginURL = "login";
@@ -138,7 +130,7 @@ class ServerCommunications {
         return new Promise((resolve, reject) => {
             Request
                 .get(serverUrl + stationURL + id)
-                .set("Authorization",jwtToken)
+                .set("Authorization", jwtToken)
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
@@ -199,24 +191,37 @@ class ServerCommunications {
     // STATISTICS ======================================================================================================
 
     getStats(statsString) {
-        console.log(serverUrl+statisticsURL+statsString);
-        return new Promise((resolve, reject) =>{
-           Request
-               .get(serverUrl+statisticsURL+statsString)
-               .end((err, res) => {
+        return new Promise((resolve, reject) => {
+            Request
+                .get(serverUrl + statisticsURL + statsString)
+                .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
                     } else {
                         resolve(res);
                     }
-               });
+                });
+        });
+    }
+
+    getAllStationIds() {
+        return new Promise((resolve, reject) => {
+            Request
+                .get(serverUrl + statisticsURL + "/stations")
+                .end((err, res) => {
+                    if (err || !res.ok) {
+                        reject(err)
+                    } else {
+                        resolve(res)
+                    }
+                });
         });
     }
 
     getAvgTemp() {
         return new Promise((resolve, reject) => {
             Request
-                .get(serverUrl+statisticsAVGURL+"temp")
+                .get(serverUrl + statisticsAVGURL + "temp")
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
@@ -230,7 +235,7 @@ class ServerCommunications {
     getAvgRainfall() {
         return new Promise((resolve, reject) => {
             Request
-                .get(serverUrl+statisticsAVGURL+"rainfall")
+                .get(serverUrl + statisticsAVGURL + "rainfall")
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
@@ -244,7 +249,7 @@ class ServerCommunications {
     getAvgWindVelocity() {
         return new Promise((resolve, reject) => {
             Request
-                .get(serverUrl+statisticsAVGURL+"wind_velocity")
+                .get(serverUrl + statisticsAVGURL + "wind_velocity")
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
@@ -258,7 +263,7 @@ class ServerCommunications {
     getAvgCloudCoverage() {
         return new Promise((resolve, reject) => {
             Request
-                .get(serverUrl+statisticsAVGURL+"cloud_coverage")
+                .get(serverUrl + statisticsAVGURL + "cloud_coverage")
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
@@ -272,7 +277,7 @@ class ServerCommunications {
     getAvgHumidity() {
         return new Promise((resolve, reject) => {
             Request
-                .get(serverUrl+statisticsAVGURL+"humidity")
+                .get(serverUrl + statisticsAVGURL + "humidity")
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);
@@ -286,7 +291,7 @@ class ServerCommunications {
     getAvgPressure() {
         return new Promise((resolve, reject) => {
             Request
-                .get(serverUrl+statisticsAVGURL+"pressure")
+                .get(serverUrl + statisticsAVGURL + "pressure")
                 .end((err, res) => {
                     if (err || !res.ok) {
                         reject(err);

@@ -7,8 +7,9 @@
 /*
  * Animations
  * ========================================================================== */
+@import url("https://fonts.googleapis.com/css?family=Sansita");
 .stats-root {
-  height: 100%;
+  height: 100vh;
   margin-top: 2em; }
   .stats-root .details-container {
     max-width: 100em;
@@ -41,7 +42,43 @@
         font-style: oblique; }
       .stats-root .details-container .stats-info .stats-unit {
         opacity: 0.6; }
+  .stats-root .stats-title-container {
+    max-width: 100em;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: left;
+    justify-content: left; }
+  .stats-root #title-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline; }
+    .stats-root #title-div span {
+      text-align: right; }
+    .stats-root #title-div .stationDropDown {
+      height: 2.2em;
+      font-family: Sansita, sans-serif;
+      color: white;
+      font-size: 2em;
+      text-align: right;
+      border: 0;
+      outline: 0;
+      background-color: rgba(255, 255, 255, 0);
+      border-radius: .3em;
+      padding: .2em; }
+      .stats-root #title-div .stationDropDown option {
+        font-size: .2em; }
   .stats-root h2 {
-    color: white; }
+    font-family: Sansita, sans-serif;
+    font-size: 3em;
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 20px; }
+  .stats-root .weatherdata-root {
+    width: 100%; }
+    .stats-root .weatherdata-root table {
+      font-size: 1em; }
 
 /*# sourceMappingURL=StatsRoot.css.map */

@@ -38,7 +38,7 @@ export default class Root extends Component {
         }
 
         return (
-            <div id="root">
+            <div id="rootRoot">
                 <MenuBar changePage={this.changePage.bind(this)}/>
 
                 {activePage}
