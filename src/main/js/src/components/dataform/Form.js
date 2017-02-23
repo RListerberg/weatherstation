@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import Datainput from '../datainput/Datainput';
-import WeatherdataContainer from '../weatherdata-container/WeatherdataContainer';
+import WeatherdataContainer from '../weatherdata-container2/WeatherdataContainer';
 import { windValues, cloudValues, cloudCoverageValues, currentStation } from '../../Constants';
 import { serverCommunications } from '../../ServerCommunications';
 import './Form.css';
+
+let weatherData = {
+    cloudBase: 125,
+    cloudCoverage: 124,
+    cloudType: 532,
+    dataDate: 2015225212,
+    dataTime: 12242,
+    humidity: 1356,
+    pressure: 7456,
+    rainfall: 2352,
+    temp: 2352,
+    windDirection: 2352,
+    windVelocity: 235,
+};
 
 export default class Form extends Component {
 
@@ -166,14 +180,6 @@ export default class Form extends Component {
         }
     }
 
-    renderHistory(){
-        return this.state.weatherDataHistory.map ((weatherdata) => {
-            return (
-                <WeatherdataContainer weatherdata={weatherdata}/>
-            )
-        })
-    }
-
     render() {
         return (
             <div id="form-root">
@@ -198,7 +204,7 @@ export default class Form extends Component {
                 <h2 id="history-header">HISTORY</h2>
                 <hr/>
                 <div id="weatherdata-container">
-                    {this.renderHistory()}
+                    <WeatherdataContainer weatherDataArray={this.state.weatherDataHistory}/>
                 </div>
 
             </div>

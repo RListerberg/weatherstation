@@ -15,15 +15,19 @@
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: .3em;
     padding: .2em;
+    font-weight: 300;
 
-    option {
-      font-size: .8em;
+    select {
+      option {
+        font-size: .7em;
+      }
     }
   }
 
   p {
     text-align: center;
     margin-top: 0;
+    color: white;
     font-size: .8em;
   }
 
@@ -42,6 +46,8 @@
       outline: 0;
       border-radius: .4em;
       background: transparent;
+      font-weight: 300;
+      padding: 0;
     }
 
     .input-error {
@@ -58,6 +64,7 @@
     p {
       margin: 0;
       font-size: 1.1em;
+      color: black;
     }
   }
 }
@@ -68,6 +75,7 @@
   position: relative;
 
   .dateTimeInput {
+    font-weight: 300;
     font-size: 1em;
     text-align: center;
     width: 95%;
