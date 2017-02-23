@@ -17,24 +17,27 @@
     width: 100vw;
     height: 100vh;
     background: url('../../img/backgroundCloud.png') no-repeat fixed center;
-    background-position-y: 60%;
-    background-position-x: 42%;
-    position: absolute;
+
   }
 
 
   #login-form {
     position: absolute;
-    top: 43%;
-    left: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
     width: 200px;
     height: 190px;
     z-index: 15;
-    margin: -100px 0 0 -150px;
     background: transparent;
     text-align: center;
     align-items: center;
 
+    h1 {
+      margin: 0;
+    }
 
       #login-graphics{
         padding: 0px;
@@ -68,16 +71,20 @@
 
     .errorDiv-active-1{
       overflow-y: hidden;
-      min-width: 400px;
       visibility: visible;
       color: #D8000C;
       font-size: 1.1em;
       text-align: left;
       right: 39%;
+
+      #errorMessageID{
+        text-align: center !important;
+      }
     }
 
     #errorMessageID{
-      margin: 0;
+      margin-top: .6em;
+      margin-bottom: .6em;
     }
 
   }

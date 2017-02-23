@@ -15,21 +15,22 @@
   #login-root #backgroundCloud {
     width: 100vw;
     height: 100vh;
-    background: url("../../img/backgroundCloud.png") no-repeat fixed center;
-    background-position-y: 60%;
-    background-position-x: 42%;
-    position: absolute; }
+    background: url("../../img/backgroundCloud.png") no-repeat fixed center; }
   #login-root #login-form {
     position: absolute;
-    top: 43%;
-    left: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
     width: 200px;
     height: 190px;
     z-index: 15;
-    margin: -100px 0 0 -150px;
     background: transparent;
     text-align: center;
     align-items: center; }
+    #login-root #login-form h1 {
+      margin: 0; }
     #login-root #login-form #login-graphics {
       padding: 0px; }
     #login-root #login-form .loginInputs {
@@ -54,14 +55,16 @@
       right: 39%; }
     #login-root #login-form .errorDiv-active-1 {
       overflow-y: hidden;
-      min-width: 400px;
       visibility: visible;
       color: #D8000C;
       font-size: 1.1em;
       text-align: left;
       right: 39%; }
+      #login-root #login-form .errorDiv-active-1 #errorMessageID {
+        text-align: center !important; }
     #login-root #login-form #errorMessageID {
-      margin: 0; }
+      margin-top: .6em;
+      margin-bottom: .6em; }
   #login-root #titleHeader {
     font-family: 'Sansita', sans-serif; }
   #login-root #loginBut {
