@@ -21,6 +21,7 @@ export const loginURL = "/login";
 export var loggedIn = false;
 export var jwtToken = "";
 export var stationsID = "";
+export var currentStation = "";
 
 export function setToken(string) {
     jwtToken = string;
@@ -32,6 +33,10 @@ export function setLoggedIn(logged) {
 
 export function setStationsID(id) {
     stationsID = id;
+}
+
+export function setStation(station) {
+    currentStation = station;
 }
 
 

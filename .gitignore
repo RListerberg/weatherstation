@@ -4,7 +4,7 @@ target/
 node_modules
 *.css
 *.css.map
-
+npm-debug.log
 SecurityTest/SecurityTest.java
 
 ### STS ###

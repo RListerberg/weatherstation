@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import {serverCommunications} from '../../ServerCommunications';
-import {setToken} from '../../Constants';
-import {setLoggedIn} from '../../Constants';
-import {setStationsID} from '../../Constants';
+import {setToken, setLoggedIn, setStationsID, setStation} from '../../Constants';
 
 export default class Login extends Component {
 
@@ -38,6 +36,7 @@ export default class Login extends Component {
                 serverCommunications.getOneStation(this.state.id).then((response)=>{
                     setLoggedIn(true);
                     setStationsID(response.body.id);
+                    setStation(response.body);
                     this.props.changePage("weatherdata");
                 });
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import Datainput from '../datainput/Datainput';
-import { windValues, cloudValues, cloudCoverageValues } from '../../Constants';
+import { windValues, cloudValues, cloudCoverageValues, currentStation } from '../../Constants';
 import { serverCommunications } from '../../ServerCommunications';
 import './Form.css';
 
@@ -14,7 +14,7 @@ export default class Form extends Component {
         super(props);
         this.state = ({
             date: moment(date).format("YYYY-MM-DD"),
-            time: moment(date).format("HH:mm"),
+            time: moment(date).format("HH:mm:ss"),
             winddirection: windValues[0].value,
             cloudtype: cloudValues[0].value,
             cloudcoverage: 1
@@ -112,7 +112,6 @@ export default class Form extends Component {
 
             let weatherData = {
                 cloudBase: this.state.cloudbase,
-                cloudCoverage: this.state.cloudcoverage,
                 cloudType: this.state.cloudtype,
                 dataDate: this.state.date,
                 dataTime: this.state.time,
@@ -121,7 +120,8 @@ export default class Form extends Component {
                 rainfall: this.state.rainfall,
                 temp: this.state.temperature,
                 windDirection: this.state.winddirection,
-                windVelocity: this.state.windvelocity
+                windVelocity: this.state.windvelocity,
+                station: currentStation
             };
 
             serverCommunications.addWeatherData(weatherData).then((response)=> {
